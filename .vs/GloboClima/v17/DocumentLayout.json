@@ -3,6 +3,50 @@
   "WorkspaceRootPath": "D:\\DESENVOLVIMENTO\\MEU PROJETO\\GloboClima\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{54CA0C39-AEC4-4AE6-9D90-B2F2883A6216}|GloboClima.API\\GloboClima.API.csproj|d:\\desenvolvimento\\meu projeto\\globoclima\\globoclima.api\\programstart\\configuracaodeinjecaodedependencia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{54CA0C39-AEC4-4AE6-9D90-B2F2883A6216}|GloboClima.API\\GloboClima.API.csproj|solutionrelative:globoclima.api\\programstart\\configuracaodeinjecaodedependencia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0D4C3C5C-1636-4760-9FDE-97B572B10436}|GloboClima.Servico\\GloboClima.Servico.csproj|d:\\desenvolvimento\\meu projeto\\globoclima\\globoclima.servico\\servicos\\servicorestcountries.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0D4C3C5C-1636-4760-9FDE-97B572B10436}|GloboClima.Servico\\GloboClima.Servico.csproj|solutionrelative:globoclima.servico\\servicos\\servicorestcountries.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{54CA0C39-AEC4-4AE6-9D90-B2F2883A6216}|GloboClima.API\\GloboClima.API.csproj|d:\\desenvolvimento\\meu projeto\\globoclima\\globoclima.api\\controllers\\paisclimacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{54CA0C39-AEC4-4AE6-9D90-B2F2883A6216}|GloboClima.API\\GloboClima.API.csproj|solutionrelative:globoclima.api\\controllers\\paisclimacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D5E3075-33A6-49F6-A565-ABE642B0B2FC}|GloboClima.Dominio\\GloboClima.Dominio.csproj|d:\\desenvolvimento\\meu projeto\\globoclima\\globoclima.dominio\\models\\paisresponse\\flags.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9D5E3075-33A6-49F6-A565-ABE642B0B2FC}|GloboClima.Dominio\\GloboClima.Dominio.csproj|solutionrelative:globoclima.dominio\\models\\paisresponse\\flags.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D5E3075-33A6-49F6-A565-ABE642B0B2FC}|GloboClima.Dominio\\GloboClima.Dominio.csproj|d:\\desenvolvimento\\meu projeto\\globoclima\\globoclima.dominio\\models\\paisresponse\\name.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9D5E3075-33A6-49F6-A565-ABE642B0B2FC}|GloboClima.Dominio\\GloboClima.Dominio.csproj|solutionrelative:globoclima.dominio\\models\\paisresponse\\name.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D5E3075-33A6-49F6-A565-ABE642B0B2FC}|GloboClima.Dominio\\GloboClima.Dominio.csproj|d:\\desenvolvimento\\meu projeto\\globoclima\\globoclima.dominio\\models\\paisresponse\\paisresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9D5E3075-33A6-49F6-A565-ABE642B0B2FC}|GloboClima.Dominio\\GloboClima.Dominio.csproj|solutionrelative:globoclima.dominio\\models\\paisresponse\\paisresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0D4C3C5C-1636-4760-9FDE-97B572B10436}|GloboClima.Servico\\GloboClima.Servico.csproj|d:\\desenvolvimento\\meu projeto\\globoclima\\globoclima.servico\\servicos\\servicoopenweathermap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0D4C3C5C-1636-4760-9FDE-97B572B10436}|GloboClima.Servico\\GloboClima.Servico.csproj|solutionrelative:globoclima.servico\\servicos\\servicoopenweathermap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{54CA0C39-AEC4-4AE6-9D90-B2F2883A6216}|GloboClima.API\\GloboClima.API.csproj|d:\\desenvolvimento\\meu projeto\\globoclima\\globoclima.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{54CA0C39-AEC4-4AE6-9D90-B2F2883A6216}|GloboClima.API\\GloboClima.API.csproj|solutionrelative:globoclima.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D5E3075-33A6-49F6-A565-ABE642B0B2FC}|GloboClima.Dominio\\GloboClima.Dominio.csproj|d:\\desenvolvimento\\meu projeto\\globoclima\\globoclima.dominio\\models\\weatherresponses\\weatherresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9D5E3075-33A6-49F6-A565-ABE642B0B2FC}|GloboClima.Dominio\\GloboClima.Dominio.csproj|solutionrelative:globoclima.dominio\\models\\weatherresponses\\weatherresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D5E3075-33A6-49F6-A565-ABE642B0B2FC}|GloboClima.Dominio\\GloboClima.Dominio.csproj|d:\\desenvolvimento\\meu projeto\\globoclima\\globoclima.dominio\\models\\weatherresponses\\weatherinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9D5E3075-33A6-49F6-A565-ABE642B0B2FC}|GloboClima.Dominio\\GloboClima.Dominio.csproj|solutionrelative:globoclima.dominio\\models\\weatherresponses\\weatherinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D5E3075-33A6-49F6-A565-ABE642B0B2FC}|GloboClima.Dominio\\GloboClima.Dominio.csproj|d:\\desenvolvimento\\meu projeto\\globoclima\\globoclima.dominio\\models\\weatherresponses\\maininfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9D5E3075-33A6-49F6-A565-ABE642B0B2FC}|GloboClima.Dominio\\GloboClima.Dominio.csproj|solutionrelative:globoclima.dominio\\models\\weatherresponses\\maininfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{54CA0C39-AEC4-4AE6-9D90-B2F2883A6216}|GloboClima.API\\GloboClima.API.csproj|d:\\desenvolvimento\\meu projeto\\globoclima\\globoclima.api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{54CA0C39-AEC4-4AE6-9D90-B2F2883A6216}|GloboClima.API\\GloboClima.API.csproj|solutionrelative:globoclima.api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -21,10 +65,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{54CA0C39-AEC4-4AE6-9D90-B2F2883A6216}|GloboClima.API\\GloboClima.API.csproj|d:\\desenvolvimento\\meu projeto\\globoclima\\globoclima.api\\weatherforecast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{54CA0C39-AEC4-4AE6-9D90-B2F2883A6216}|GloboClima.API\\GloboClima.API.csproj|solutionrelative:globoclima.api\\weatherforecast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{54CA0C39-AEC4-4AE6-9D90-B2F2883A6216}|GloboClima.API\\GloboClima.API.csproj|d:\\desenvolvimento\\meu projeto\\globoclima\\globoclima.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{54CA0C39-AEC4-4AE6-9D90-B2F2883A6216}|GloboClima.API\\GloboClima.API.csproj|solutionrelative:globoclima.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,37 +74,154 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "LoginViewModels.cs",
-              "DocumentMoniker": "D:\\DESENVOLVIMENTO\\MEU PROJETO\\GloboClima\\GloboClima.API\\Models\\LoginViewModels.cs",
-              "RelativeDocumentMoniker": "GloboClima.API\\Models\\LoginViewModels.cs",
-              "ToolTip": "D:\\DESENVOLVIMENTO\\MEU PROJETO\\GloboClima\\GloboClima.API\\Models\\LoginViewModels.cs",
-              "RelativeToolTip": "GloboClima.API\\Models\\LoginViewModels.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAiAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "ServicoRestCountries.cs",
+              "DocumentMoniker": "D:\\DESENVOLVIMENTO\\MEU PROJETO\\GloboClima\\GloboClima.Servico\\Servicos\\ServicoRestCountries.cs",
+              "RelativeDocumentMoniker": "GloboClima.Servico\\Servicos\\ServicoRestCountries.cs",
+              "ToolTip": "D:\\DESENVOLVIMENTO\\MEU PROJETO\\GloboClima\\GloboClima.Servico\\Servicos\\ServicoRestCountries.cs",
+              "RelativeToolTip": "GloboClima.Servico\\Servicos\\ServicoRestCountries.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-17T16:17:09.814Z",
+              "WhenOpened": "2025-06-17T16:56:52.309Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Flags.cs",
+              "DocumentMoniker": "D:\\DESENVOLVIMENTO\\MEU PROJETO\\GloboClima\\GloboClima.Dominio\\Models\\PaisResponse\\Flags.cs",
+              "RelativeDocumentMoniker": "GloboClima.Dominio\\Models\\PaisResponse\\Flags.cs",
+              "ToolTip": "D:\\DESENVOLVIMENTO\\MEU PROJETO\\GloboClima\\GloboClima.Dominio\\Models\\PaisResponse\\Flags.cs",
+              "RelativeToolTip": "GloboClima.Dominio\\Models\\PaisResponse\\Flags.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-17T16:56:29.667Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Name.cs",
+              "DocumentMoniker": "D:\\DESENVOLVIMENTO\\MEU PROJETO\\GloboClima\\GloboClima.Dominio\\Models\\PaisResponse\\Name.cs",
+              "RelativeDocumentMoniker": "GloboClima.Dominio\\Models\\PaisResponse\\Name.cs",
+              "ToolTip": "D:\\DESENVOLVIMENTO\\MEU PROJETO\\GloboClima\\GloboClima.Dominio\\Models\\PaisResponse\\Name.cs",
+              "RelativeToolTip": "GloboClima.Dominio\\Models\\PaisResponse\\Name.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-17T16:56:13.938Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "PaisResponse.cs",
+              "DocumentMoniker": "D:\\DESENVOLVIMENTO\\MEU PROJETO\\GloboClima\\GloboClima.Dominio\\Models\\PaisResponse\\PaisResponse.cs",
+              "RelativeDocumentMoniker": "GloboClima.Dominio\\Models\\PaisResponse\\PaisResponse.cs",
+              "ToolTip": "D:\\DESENVOLVIMENTO\\MEU PROJETO\\GloboClima\\GloboClima.Dominio\\Models\\PaisResponse\\PaisResponse.cs",
+              "RelativeToolTip": "GloboClima.Dominio\\Models\\PaisResponse\\PaisResponse.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-17T16:55:46.871Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "ConfiguracaoDeInjecaoDeDependencia.cs",
+              "DocumentMoniker": "D:\\DESENVOLVIMENTO\\MEU PROJETO\\GloboClima\\GloboClima.API\\ProgramStart\\ConfiguracaoDeInjecaoDeDependencia.cs",
+              "RelativeDocumentMoniker": "GloboClima.API\\ProgramStart\\ConfiguracaoDeInjecaoDeDependencia.cs",
+              "ToolTip": "D:\\DESENVOLVIMENTO\\MEU PROJETO\\GloboClima\\GloboClima.API\\ProgramStart\\ConfiguracaoDeInjecaoDeDependencia.cs",
+              "RelativeToolTip": "GloboClima.API\\ProgramStart\\ConfiguracaoDeInjecaoDeDependencia.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-17T16:43:31.955Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "PaisClimaController.cs",
+              "DocumentMoniker": "D:\\DESENVOLVIMENTO\\MEU PROJETO\\GloboClima\\GloboClima.API\\Controllers\\PaisClimaController.cs",
+              "RelativeDocumentMoniker": "GloboClima.API\\Controllers\\PaisClimaController.cs",
+              "ToolTip": "D:\\DESENVOLVIMENTO\\MEU PROJETO\\GloboClima\\GloboClima.API\\Controllers\\PaisClimaController.cs",
+              "RelativeToolTip": "GloboClima.API\\Controllers\\PaisClimaController.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAkwBIAAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-17T16:39:39.597Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "WeatherInfo.cs",
+              "DocumentMoniker": "D:\\DESENVOLVIMENTO\\MEU PROJETO\\GloboClima\\GloboClima.Dominio\\Models\\WeatherResponses\\WeatherInfo.cs",
+              "RelativeDocumentMoniker": "GloboClima.Dominio\\Models\\WeatherResponses\\WeatherInfo.cs",
+              "ToolTip": "D:\\DESENVOLVIMENTO\\MEU PROJETO\\GloboClima\\GloboClima.Dominio\\Models\\WeatherResponses\\WeatherInfo.cs",
+              "RelativeToolTip": "GloboClima.Dominio\\Models\\WeatherResponses\\WeatherInfo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-17T16:35:26.942Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "MainInfo.cs",
+              "DocumentMoniker": "D:\\DESENVOLVIMENTO\\MEU PROJETO\\GloboClima\\GloboClima.Dominio\\Models\\WeatherResponses\\MainInfo.cs",
+              "RelativeDocumentMoniker": "GloboClima.Dominio\\Models\\WeatherResponses\\MainInfo.cs",
+              "ToolTip": "D:\\DESENVOLVIMENTO\\MEU PROJETO\\GloboClima\\GloboClima.Dominio\\Models\\WeatherResponses\\MainInfo.cs",
+              "RelativeToolTip": "GloboClima.Dominio\\Models\\WeatherResponses\\MainInfo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-17T16:35:07.272Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "WeatherResponse.cs",
+              "DocumentMoniker": "D:\\DESENVOLVIMENTO\\MEU PROJETO\\GloboClima\\GloboClima.Dominio\\Models\\WeatherResponses\\WeatherResponse.cs",
+              "RelativeDocumentMoniker": "GloboClima.Dominio\\Models\\WeatherResponses\\WeatherResponse.cs",
+              "ToolTip": "D:\\DESENVOLVIMENTO\\MEU PROJETO\\GloboClima\\GloboClima.Dominio\\Models\\WeatherResponses\\WeatherResponse.cs",
+              "RelativeToolTip": "GloboClima.Dominio\\Models\\WeatherResponses\\WeatherResponse.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAYAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-17T16:34:42.864Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ServicoOpenWeatherMap.cs",
+              "DocumentMoniker": "D:\\DESENVOLVIMENTO\\MEU PROJETO\\GloboClima\\GloboClima.Servico\\Servicos\\ServicoOpenWeatherMap.cs",
+              "RelativeDocumentMoniker": "GloboClima.Servico\\Servicos\\ServicoOpenWeatherMap.cs",
+              "ToolTip": "D:\\DESENVOLVIMENTO\\MEU PROJETO\\GloboClima\\GloboClima.Servico\\Servicos\\ServicoOpenWeatherMap.cs",
+              "RelativeToolTip": "GloboClima.Servico\\Servicos\\ServicoOpenWeatherMap.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-17T16:29:30.697Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
               "Title": "AuthController.cs",
               "DocumentMoniker": "D:\\DESENVOLVIMENTO\\MEU PROJETO\\GloboClima\\GloboClima.API\\Controllers\\AuthController.cs",
               "RelativeDocumentMoniker": "GloboClima.API\\Controllers\\AuthController.cs",
               "ToolTip": "D:\\DESENVOLVIMENTO\\MEU PROJETO\\GloboClima\\GloboClima.API\\Controllers\\AuthController.cs",
               "RelativeToolTip": "GloboClima.API\\Controllers\\AuthController.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAawBcAAAAtAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-17T16:16:15.191Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 12,
               "Title": "ServicoToken.cs",
               "DocumentMoniker": "D:\\DESENVOLVIMENTO\\MEU PROJETO\\GloboClima\\GloboClima.Servico\\Servicos\\ServicoToken.cs",
               "RelativeDocumentMoniker": "GloboClima.Servico\\Servicos\\ServicoToken.cs",
@@ -77,20 +234,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\DESENVOLVIMENTO\\MEU PROJETO\\GloboClima\\GloboClima.API\\Program.cs",
               "RelativeDocumentMoniker": "GloboClima.API\\Program.cs",
               "ToolTip": "D:\\DESENVOLVIMENTO\\MEU PROJETO\\GloboClima\\GloboClima.API\\Program.cs",
               "RelativeToolTip": "GloboClima.API\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAARAAAAAAAAAA==",
+              "ViewState": "AgIAACUAAAAAAAAAAAAAADYAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-17T16:13:43.473Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 13,
+              "Title": "LoginViewModels.cs",
+              "DocumentMoniker": "D:\\DESENVOLVIMENTO\\MEU PROJETO\\GloboClima\\GloboClima.API\\Models\\LoginViewModels.cs",
+              "RelativeDocumentMoniker": "GloboClima.API\\Models\\LoginViewModels.cs",
+              "ToolTip": "D:\\DESENVOLVIMENTO\\MEU PROJETO\\GloboClima\\GloboClima.API\\Models\\LoginViewModels.cs",
+              "RelativeToolTip": "GloboClima.API\\Models\\LoginViewModels.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-17T16:17:09.814Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
               "Title": "WeatherForecastController.cs",
               "DocumentMoniker": "D:\\DESENVOLVIMENTO\\MEU PROJETO\\GloboClima\\GloboClima.API\\Controllers\\WeatherForecastController.cs",
               "RelativeDocumentMoniker": "GloboClima.API\\Controllers\\WeatherForecastController.cs",
@@ -103,7 +273,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 15,
               "Title": "WeatherForecast.cs",
               "DocumentMoniker": "D:\\DESENVOLVIMENTO\\MEU PROJETO\\GloboClima\\GloboClima.API\\WeatherForecast.cs",
               "RelativeDocumentMoniker": "GloboClima.API\\WeatherForecast.cs",

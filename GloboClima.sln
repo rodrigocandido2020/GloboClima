@@ -14,6 +14,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GloboClima.Infra", "GloboClima.Infra\GloboClima.Infra.csproj", "{9D8BE086-5793-46ED-B70C-239202228EBD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GloboClima.Servico", "GloboClima.Servico\GloboClima.Servico.csproj", "{0D4C3C5C-1636-4760-9FDE-97B572B10436}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9D5E3075-33A6-49F6-A565-ABE642B0B2FC} = {9D5E3075-33A6-49F6-A565-ABE642B0B2FC}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

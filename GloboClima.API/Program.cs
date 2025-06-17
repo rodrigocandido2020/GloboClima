@@ -1,7 +1,8 @@
-using System.Text;
+using GloboClima.API.ProgramStart;
 using GloboClima.Servico.Servicos;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -51,6 +52,7 @@ builder.Services.AddSingleton<ServicoToken>(sp =>
     )
 );
 
+ConfiguracaoDeInjecaoDeDependencia.BindServices(builder.Services);
 var app = builder.Build();
 
 // Dev pipeline
