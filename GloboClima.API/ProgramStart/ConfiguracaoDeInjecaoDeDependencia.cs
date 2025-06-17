@@ -1,4 +1,4 @@
-﻿using GloboClima.Servico.Servicos;
+﻿using GloboClima.Servico.ServicosAPI;
 
 namespace GloboClima.API.ProgramStart
 {

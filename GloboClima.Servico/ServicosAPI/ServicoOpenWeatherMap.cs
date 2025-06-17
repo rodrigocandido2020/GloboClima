@@ -1,7 +1,7 @@
 ﻿using GloboClima.Dominio.Models.WeatherResponses;
 using System.Text.Json;
 
-namespace GloboClima.Servico.Servicos
+namespace GloboClima.Servico.ServicosAPI
 {
     public class ServicoOpenWeatherMap
     {
@@ -13,7 +13,7 @@ namespace GloboClima.Servico.Servicos
             _httpClient = httpClient;
         }
 
-        public async Task<WeatherResponse?> ObterClimaPorCidadeAsync(string cidade)
+        public async Task<WeatherResponse?> ObterClimaPorCidade(string cidade)
         {
             var url = $"{BaseUrl}?q={cidade}&appid={ApiKey}&units=metric&lang=pt";
 

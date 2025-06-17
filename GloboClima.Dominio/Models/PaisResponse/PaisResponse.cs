@@ -14,6 +14,8 @@ namespace GloboClima.Dominio.Models.PaisResponse
         public string Region { get; set; }
         public string Subregion { get; set; }
         public long Population { get; set; }
+        public Dictionary<string, string> Languages { get; set; }
+        public Dictionary<string, Currency> Currencies { get; set; }
         public Flags Flags { get; set; }
     }
 }

@@ -1,12 +1,7 @@
 ﻿using GloboClima.Dominio.Models.PaisResponse;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 
-namespace GloboClima.Servico.Servicos
+namespace GloboClima.Servico.ServicosAPI
 {
     public class ServicoRestCountries
     {
@@ -17,7 +12,7 @@ namespace GloboClima.Servico.Servicos
             _httpClient = httpClient;
         }
 
-        public async Task<PaisResponse?> ObterPaisPorCodigoAsync(string codigo)
+        public async Task<PaisResponse?> ObterPaisPorCodigo(string codigo)
         {
             var url = $"{BaseUrl}{codigo}";
 
