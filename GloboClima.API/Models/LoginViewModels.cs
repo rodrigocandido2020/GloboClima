@@ -1,8 +1,8 @@
 ﻿namespace GloboClima.API.Models
 {
-    public class LoginDTO
+    public class LoginViewModels
     {
-        public string? Email { get; set; }
+        public string? NomeUsuario { get; set; }
         public string? Senha { get; set; }
     }
 

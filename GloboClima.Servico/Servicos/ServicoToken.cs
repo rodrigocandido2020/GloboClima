@@ -1,9 +1,9 @@
-﻿using System.IdentityModel.Tokens.Jwt;
+﻿using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using Microsoft.IdentityModel.Tokens;
 
-namespace GloboClima.API.Services
+namespace GloboClima.Servico.Servicos
 {
     public class ServicoToken
     {
@@ -32,7 +32,7 @@ namespace GloboClima.API.Services
                 issuer: _issuer,
                 audience: _audience,
                 claims: claims,
-                expires: DateTime.Now.AddHours(1),
+                expires: DateTime.Now.AddHours(8),
                 signingCredentials: credenciais
             );
 

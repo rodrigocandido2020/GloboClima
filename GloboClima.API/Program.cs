@@ -1,5 +1,5 @@
 using System.Text;
-using GloboClima.API.Services;
+using GloboClima.Servico.Servicos;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 

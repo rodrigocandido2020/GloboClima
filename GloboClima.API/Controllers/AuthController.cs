@@ -1,5 +1,5 @@
 ﻿using GloboClima.API.Models;
-using GloboClima.API.Services;
+using GloboClima.Servico.Servicos;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GloboClima.API.Controllers
@@ -15,7 +15,7 @@ namespace GloboClima.API.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login(LoginDTO? loginDTO)
+        public IActionResult Login(LoginViewModels? loginDTO)
         {
             if (loginDTO == null)
                 return BadRequest("Os dados de login são obrigatórios.");
