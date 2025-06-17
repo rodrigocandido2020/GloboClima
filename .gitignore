@@ -384,3 +384,4 @@ MigrationBackup/
 FodyWeavers.xsd
 
 .angular/
+.vs/
