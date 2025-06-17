@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "Novo Perfil",
+    "Projects": [
+      {
+        "Path": "GloboClima.API\\GloboClima.API.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "GloboClima.Web\\Client\\GloboClima.Web.Client.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]

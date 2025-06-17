@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\GloboClima.Web.Client.props" />
+</Project>
