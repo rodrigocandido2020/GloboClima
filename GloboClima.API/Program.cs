@@ -1,3 +1,6 @@
+using Amazon;
+using Amazon.DynamoDBv2;
+using Amazon.DynamoDBv2.DataModel;
 using GloboClima.API.ProgramStart;
 using GloboClima.Servico.Servicos;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -51,9 +54,35 @@ builder.Services.AddSingleton<ServicoToken>(sp =>
         builder.Configuration["Jwt:Audience"]
     )
 );
+// AWS DynamoDB (usa ~/.aws/credentials e região do config)
+builder.Services.AddDefaultAWSOptions(builder.Configuration.GetAWSOptions("AWS"));
+builder.Services.AddSingleton<IAmazonDynamoDB>(sp =>
+{
+    var config = new AmazonDynamoDBConfig
+    {
+        RegionEndpoint = RegionEndpoint.SAEast1 // ajuste se necessário
+    };
+
+    return new AmazonDynamoDBClient(
+        builder.Configuration["AWS:AccessKey"],
+        builder.Configuration["AWS:SecretKey"],
+        config
+    );
+});
+builder.Services.AddSingleton<IDynamoDBContext, DynamoDBContext>();
+
+// Serviços relacionados ao DynamoDB
+builder.Services.AddSingleton<UsuarioServico>();
+builder.Services.AddSingleton<UsuarioSeeder>();
 
 ConfiguracaoDeInjecaoDeDependencia.BindServices(builder.Services);
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var seeder = scope.ServiceProvider.GetRequiredService<UsuarioSeeder>();
+    await seeder.CriarUsuarioAdminAsync();
+}
 
 // Dev pipeline
 if (app.Environment.IsDevelopment())

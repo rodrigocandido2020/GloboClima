@@ -5,13 +5,17 @@
 
 <h3>Obter Clima</h3>
 
-<div class="form-group">
-    <label for="cidade">Cidade</label>
-    <input type="text" class="form-control" @bind="cidade" placeholder="Digite a cidade" />
-    <button class="btn btn-primary mt-2" @onclick="BuscarClima">
-        <span class="oi oi-magnifying-glass"></span> Buscar
-    </button>
+<div class="form-group col-4">
+    <form @onsubmit="BuscarClima">
+        <label class="mb-1" for="cidade">Cidade</label>
+        <input class="form-control" @bind="cidade" placeholder="Digite a cidade" />
+
+        <button type="submit" class="btn btn-primary mt-2">
+            <span class="oi oi-magnifying-glass"></span> Buscar
+        </button>
+    </form>
 </div>
+
 
 @if (climaResultado != null)
 {
