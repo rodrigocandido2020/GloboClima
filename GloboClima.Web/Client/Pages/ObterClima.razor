@@ -1,0 +1,81 @@
+@page "/obter-clima"
+@using GloboClima.Web.Shared.PaisResponseViews
+@using GloboClima.Web.Shared.WeatherResponsesViews
+@inject HttpClient Http
+
+<h3>Obter Clima</h3>
+
+<div class="form-group">
+    <label for="cidade">Cidade</label>
+    <input type="text" class="form-control" @bind="cidade" placeholder="Digite a cidade" />
+    <button class="btn btn-primary mt-2" @onclick="BuscarClima">
+        <span class="oi oi-magnifying-glass"></span> Buscar
+    </button>
+</div>
+
+@if (climaResultado != null)
+{
+    <div class="mt-4 card p-3">
+        <h5>Clima em @climaResultado.Name</h5>
+        <ul>
+            <li><strong>Temperatura:</strong> @climaResultado.Main.Temp.ToString("0.##")°C</li>
+            <li><strong>Sensação térmica:</strong> @climaResultado.Main.Feels_like.ToString("0.##")°C</li>
+            <li><strong>Umidade:</strong> @climaResultado.Main.Humidity%</li>
+            <li><strong>Descrição:</strong> @climaResultado.Weather[0].Description</li>
+        </ul>
+    </div>
+}
+
+@if (paisResultado != null)
+{
+    <div class="mt-4 card p-3">
+        <h5>Informações sobre o país</h5>
+        <ul>
+            <li><strong>Nome:</strong> @paisResultado.Name.Common</li>
+            <li><strong>Nome oficial:</strong> @paisResultado.Name.Official</li>
+            <li><strong>Capital:</strong> @(string.Join(", ", paisResultado.Capital))</li>
+            <li><strong>Região:</strong> @paisResultado.Region</li>
+            <li><strong>Sub-região:</strong> @paisResultado.Subregion</li>
+            <li><strong>População:</strong> @paisResultado.Population.ToString("N0")</li>
+            <li><strong>Idiomas:</strong> @(string.Join(", ", paisResultado.Languages.Values))</li>
+            <li>
+                <strong>Moedas:</strong>&nbsp;
+                @foreach (var moeda in paisResultado.Currencies)
+                {
+                    <span>@moeda.Value.Name (@moeda.Value.Symbol)</span>
+                }
+            </li>
+            @if (paisResultado.Flags?.Png != null)
+            {
+                <img src="@paisResultado.Flags.Png" alt="Bandeira de @paisResultado.Name.Common" class="rounded" />
+            }
+        </ul>
+    </div>
+}
+
+@code {
+    private string cidade = "";
+    private WeatherResponse? climaResultado;
+    private PaisResponse? paisResultado;
+
+    private async Task BuscarClima()
+    {
+        if (!string.IsNullOrWhiteSpace(cidade))
+        {
+            try
+            {
+                climaResultado = await Http.GetFromJsonAsync<WeatherResponse>($"api/PaisClima/clima?cidade={Uri.EscapeDataString(cidade)}");
+                if (climaResultado?.Sys?.Country != null)
+                {
+                    paisResultado = await Http.GetFromJsonAsync<PaisResponse>($"api/PaisClima/pais?codigo={climaResultado.Sys.Country}");
+                }
+            }
+            catch (HttpRequestException)
+            {
+                climaResultado = null;
+                paisResultado = null;
+            }
+
+        }
+    }
+}

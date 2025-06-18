@@ -1,4 +1,4 @@
-﻿namespace GloboClima.Dominio.Models.WeatherResponses
+﻿namespace GloboClima.Web.Shared.WeatherResponsesViews
 {
     public class WeatherInfo
     {

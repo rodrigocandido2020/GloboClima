@@ -1,4 +1,4 @@
-﻿namespace GloboClima.Dominio.Models.WeatherResponses
+﻿namespace GloboClima.Web.Shared.WeatherResponsesViews
 {
     public class WeatherResponse
     {
@@ -7,5 +7,4 @@
         public SysInfo Sys { get; set; }
         public string Name { get; set; }
     }
-
 }
