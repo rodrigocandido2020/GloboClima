@@ -56,7 +56,7 @@ builder.Services.AddSingleton<IAmazonDynamoDB>(sp =>
 {
     var config = new AmazonDynamoDBConfig
     {
-        RegionEndpoint = RegionEndpoint.SAEast1 // ajuste se necessário
+        RegionEndpoint = RegionEndpoint.SAEast1
     };
 
     return new AmazonDynamoDBClient(
