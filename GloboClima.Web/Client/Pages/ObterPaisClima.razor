@@ -1,15 +1,18 @@
 @page "/obter-pais-clima"
+@using GloboClima.Web.Shared.FavoritosViewModels
 @using GloboClima.Web.Shared.PaisResponseViews
 @using GloboClima.Web.Shared.WeatherResponsesViews
 @using GloboClima.Web.Shared.Servico
+@using Microsoft.AspNetCore.Components.Authorization
 @inject servicoAPI Api
+@inject IJSRuntime JS
 
 <h3>Obter Clima País</h3>
 
 <div class="form-group col-4">
     <form @onsubmit="BuscarClima">
         <label class="mb-1" for="cidade">Cidade</label>
-        <input class="form-control" @bind="cidade" placeholder="Digite a cidade" />
+        <input class="form-control" @bind="cidade" @bind:event="oninput" placeholder="Digite a cidade" />
 
         <button type="submit" class="btn btn-primary mt-2">
             <span class="oi oi-magnifying-glass"></span> Buscar
@@ -17,10 +20,32 @@
     </form>
 </div>
 
+@if (mostrarMensagemSucesso && string.IsNullOrEmpty(erro))
+{
+    <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
+        Favorito salvo com sucesso.
+    </div>
+}
+
+@if (!string.IsNullOrEmpty(erro))
+{
+    <div class="mt-3 alert alert-danger">@erro</div>
+}
 
 @if (climaResultado != null)
 {
-    <div class="mt-4 card p-3">
+    <AuthorizeView>
+        <Authorized>
+            @if (PodeSalvarFavorito)
+            {
+                <button class="btn btn-success mt-2" @onclick="SalvarFavorito">
+                    <span class="oi oi-data-transfer-download me-1"></span> Salvar pesquisa nos favoritos
+                </button>
+            }
+        </Authorized>
+    </AuthorizeView>
+
+    <div class="mt-2 card p-3">
         <h5>Clima em @climaResultado.Name</h5>
         <ul>
             <li><strong>Temperatura:</strong> @climaResultado.Main.Temp.ToString("0.##")°C</li>
@@ -33,7 +58,7 @@
 
 @if (paisResultado != null)
 {
-    <div class="mt-4 card p-3">
+    <div class="mt-2 mb-4 card p-3">
         <h5>Informações sobre o país</h5>
         <ul>
             <li><strong>Nome:</strong> @paisResultado.Name.Common</li>
@@ -58,21 +83,22 @@
     </div>
 }
 
-@if (!string.IsNullOrEmpty(erro))
-{
-    <div class="mt-3 alert alert-danger">@erro</div>
-}
-
 @code {
     private string cidade = "";
     private WeatherResponse? climaResultado;
     private PaisResponse? paisResultado;
     private string? erro;
+    private string? cidadePesquisaAtual;
+    private bool mostrarMensagemSucesso;
+
+    private bool PodeSalvarFavorito =>
+       !string.IsNullOrWhiteSpace(cidadePesquisaAtual) &&
+       cidade.Equals(cidadePesquisaAtual, StringComparison.OrdinalIgnoreCase);
 
     private async Task BuscarClima()
     {
         erro = null;
-     
+
         var (clima, erroClima) = await Api.GetAsync<WeatherResponse>($"api/PaisClima/clima?cidade={Uri.EscapeDataString(cidade)}");
 
         if (erroClima != null)
@@ -84,6 +110,7 @@
         }
 
         climaResultado = clima;
+        cidadePesquisaAtual = cidade;
 
         if (!string.IsNullOrWhiteSpace(clima?.Sys?.Country))
         {
@@ -98,5 +125,26 @@
 
             paisResultado = pais;
         }
+    }
+
+    private async Task SalvarFavorito()
+    {
+        erro = null;
+        var (_, problema) = await Api.PostAsync<Favorito>("api/favoritos", climaResultado!.Name);
+
+        if (problema != null)
+        {
+            erro = problema.Detail;
+            mostrarMensagemSucesso = false;
+            return;
+        }
+
+        mostrarMensagemSucesso = true;
+        StateHasChanged();
+        // Aguarda 3 segundos e depois esconde
+        await Task.Delay(3000);
+        mostrarMensagemSucesso = false;
+
+        StateHasChanged();
     }
 }

@@ -1,16 +1,23 @@
-﻿using System.Net.Http.Json;
+﻿using System.Net.Http.Headers;
+using System.Net.Http.Json;
 using System.Text.Json;
 using GloboClima.Web.Shared.ProblemDetails;
+using Microsoft.JSInterop;
 
 namespace GloboClima.Web.Shared.Servico
 {
     public class servicoAPI
     {
         private readonly HttpClient _http;
+        private readonly IJSRuntime _jsRuntime;
 
-        public servicoAPI(HttpClient http)
+        public servicoAPI(
+            HttpClient http,
+            IJSRuntime jsRuntime
+            )
         {
             _http = http;
+            _jsRuntime = jsRuntime;
         }
 
         public Task<(T? Resultado, ProblemDetail? Erro)> GetAsync<T>(string url) =>
@@ -34,10 +41,22 @@ namespace GloboClima.Web.Shared.Servico
                 if (body != null)
                     request.Content = JsonContent.Create(body);
 
+                var token = await _jsRuntime.InvokeAsync<string>("localStorage.getItem", "authToken");
+
+                if (!string.IsNullOrWhiteSpace(token))
+                {
+                    request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                }
+
                 var response = await _http.SendAsync(request);
 
                 if (response.IsSuccessStatusCode)
+                {
+                    if (response.StatusCode == System.Net.HttpStatusCode.NoContent || typeof(T) == typeof(object))
+                        return (default, null);
+
                     return (await response.Content.ReadFromJsonAsync<T>(), null);
+                }
 
                 var json = await response.Content.ReadAsStringAsync();
                 var erro = JsonSerializer.Deserialize<ProblemDetail>(json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true })

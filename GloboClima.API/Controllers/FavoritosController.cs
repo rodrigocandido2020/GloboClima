@@ -1,5 +1,4 @@
-﻿using GloboClima.Dominio.Models.Favoritos;
-using GloboClima.Servico.Servicos;
+﻿using GloboClima.Servico.Servicos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,38 +10,31 @@ namespace GloboClima.API.Controllers
     public class FavoritosController : ControllerBase
     {
         private readonly ServicoFavorito _servicoFavorito;
+        
         public FavoritosController(ServicoFavorito servicoFavorito)
         {
             _servicoFavorito = servicoFavorito;
         }
 
         [HttpPost]
-        public async Task<IActionResult> AdicionarCidadeFavorita([FromBody] Favorito favorita)
+        public async Task<IActionResult> AdicionarFavorito([FromBody] string cidade)
         {
-            if (string.IsNullOrWhiteSpace(favorita.Codigo) || string.IsNullOrWhiteSpace(favorita.Nome))
-            {
-                return BadRequest("Código e nome são obrigatórios.");
-            }
-
-            await _servicoFavorito.SalvarCidadeFavoritaAsync(favorita);
-            return Ok("Cidade salva como favorita.");
+            var resultado = await _servicoFavorito.SalvarFavoritos(cidade);
+            return Ok(resultado);
         }
 
         [HttpGet]
-        public async Task<IActionResult> ListarCidadesFavoritas()
+        public async Task<IActionResult> ListarFavoritos()
         {
-            var favoritos = await _servicoFavorito.ListarFavorita();
+            var favoritos = await _servicoFavorito.ListarFavoritos();
             return Ok(favoritos);
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeletarCidadeFavorita(string id)
+        public async Task<IActionResult> DeletarFavoritos(string id)
         {
-            var sucesso = await _servicoFavorito.DeletarFavorita(id);
-            if (!sucesso)
-                return NotFound("Cidade favorita não encontrada.");
-
-            return Ok("Cidade favorita removida com sucesso.");
+            await _servicoFavorito.DeletarFavoritos(id);
+            return NoContent();
         }
 
     }

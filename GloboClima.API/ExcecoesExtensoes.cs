@@ -53,6 +53,10 @@ namespace GloboClima.API
                     ConfigurarBadRequestDetalhes(problemDetails, badRequestException);
                     break;
 
+                case ConflictException conflictException:
+                    ConfigurarconflictDetalhes(problemDetails, conflictException);
+                    break;
+
                 default:
                     ConfigurarDetalhesErroGenerico(problemDetails, exception, logger);
                     break;
@@ -83,6 +87,13 @@ namespace GloboClima.API
             problemDetails.Status = StatusCodes.Status400BadRequest;
             problemDetails.Detail = badRequestException.Message;
             problemDetails.Extensions["Details"] = badRequestException.StackTrace;
+        }
+        private static void ConfigurarconflictDetalhes(ProblemDetails problemDetails, ConflictException conflictException)
+        {
+            problemDetails.Title = "Conflito de Requisição!";
+            problemDetails.Status = StatusCodes.Status409Conflict;
+            problemDetails.Detail = conflictException.Message;
+            problemDetails.Extensions["Details"] = conflictException.StackTrace;
         }
 
         private static void ConfigurarDetalhesErroGenerico(ProblemDetails problemDetails, Exception exception, ILogger logger)

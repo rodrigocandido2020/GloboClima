@@ -1,5 +1,5 @@
 ﻿using Amazon.DynamoDBv2;
-using GloboClima.Dominio.Models.Usuarios;
+using GloboClima.API.ViewModels;
 using GloboClima.Servico.Servicos;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,7 +16,7 @@ namespace GloboClima.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(Usuario? login)
+        public async Task<IActionResult> Login(LoginViewModel? login)
         {
             if (login == null)
                 return BadRequest("Os dados de login são obrigatórios.");

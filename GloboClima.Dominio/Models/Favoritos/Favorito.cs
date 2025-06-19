@@ -6,8 +6,9 @@ namespace GloboClima.Dominio.Models.Favoritos
     public class Favorito
     {
         [DynamoDBHashKey]
-        public string Id { get; set; } = Guid.NewGuid().ToString();
-        public string Codigo { get; set; }
-        public string Nome { get; set; }
+        public string Id { get; set; }
+        public string Cidade { get; set; }
+        public string CodigoPais { get; set; }
+        public string NomePais { get; set; }
     }
 }
