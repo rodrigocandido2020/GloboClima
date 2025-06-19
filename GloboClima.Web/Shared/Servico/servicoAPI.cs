@@ -16,7 +16,7 @@ namespace GloboClima.Web.Shared.Servico
         public Task<(T? Resultado, ProblemDetail? Erro)> GetAsync<T>(string url) =>
             RequestAsync<T>(HttpMethod.Get, url);
 
-        public Task<(T? Resultado, ProblemDetail? Erro)> PostAsync<T>(string url, object body) =>
+        public Task<(T? Resultado, ProblemDetail? Erro)> PostAsync<T>(string url, object? body) =>
             RequestAsync<T>(HttpMethod.Post, url, body);
 
         public async Task<(bool Sucesso, ProblemDetail? Erro)> DeleteAsync(string url)

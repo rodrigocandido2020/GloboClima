@@ -10,7 +10,6 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// CORS
 var frontEndCorsPolicy = "FrontEndPolicy";
 
 builder.Services.AddCors(options =>
@@ -24,12 +23,10 @@ builder.Services.AddCors(options =>
         });
 });
 
-// Controllers e Swagger
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Autenticação JWT
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
@@ -47,7 +44,6 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 builder.Services.AddAuthorization();
 
-// Token Service
 builder.Services.AddSingleton<ServicoToken>(sp =>
     new ServicoToken(
         builder.Configuration["Jwt:SecretKey"],
@@ -55,7 +51,6 @@ builder.Services.AddSingleton<ServicoToken>(sp =>
         builder.Configuration["Jwt:Audience"]
     )
 );
-// AWS DynamoDB (usa ~/.aws/credentials e região do config)
 builder.Services.AddDefaultAWSOptions(builder.Configuration.GetAWSOptions("AWS"));
 builder.Services.AddSingleton<IAmazonDynamoDB>(sp =>
 {
@@ -72,7 +67,6 @@ builder.Services.AddSingleton<IAmazonDynamoDB>(sp =>
 });
 builder.Services.AddSingleton<IDynamoDBContext, DynamoDBContext>();
 
-// Serviços relacionados ao DynamoDB
 builder.Services.AddSingleton<ServicoUsuario>();
 builder.Services.AddSingleton<CriarUsuarioAdmin>();
 builder.Services.AddSingleton<ServicoPaisClima>();
@@ -86,7 +80,6 @@ using (var scope = app.Services.CreateScope())
     await seeder.CriarUsuarioAdminAsync();
 }
 
-// Dev pipeline
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

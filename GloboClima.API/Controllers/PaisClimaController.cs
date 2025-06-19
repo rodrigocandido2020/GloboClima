@@ -1,5 +1,4 @@
 ﻿using GloboClima.Servico.Servicos;
-using GloboClima.Servico.ServicosAPI;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GloboClima.API.Controllers
