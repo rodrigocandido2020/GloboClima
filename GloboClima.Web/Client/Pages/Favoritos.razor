@@ -1,0 +1,87 @@
+﻿@page "/favoritos"
+@using GloboClima.Web.Shared.Servico
+@inject servicoAPI Api
+
+<h3>Favoritos</h3>
+
+@if (!string.IsNullOrWhiteSpace(erro))
+{
+    <div class="alert alert-danger">@erro</div>
+}
+else if (favoritos == null)
+{
+    <p><em>Carregando favoritos...</em></p>
+}
+else if (favoritos.Count == 0)
+{
+    <div class="alert alert-info">Nenhum favorito salvo ainda.</div>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Cidade</th>
+                <th>País</th>
+                <th>Código do País</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var fav in favoritos)
+            {
+                <tr>
+                    <td>@fav.Cidade</td>
+                    <td>@fav.NomePais</td>
+                    <td>@fav.CodigoPais</td>
+                    <td>
+                        <button class="btn btn-danger btn-sm" @onclick="() => DeletarFavorito(fav.Id)">
+                            <span class="oi oi-trash me-1"></span> Remover
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<Favorito>? favoritos;
+    private string? erro;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var (resultado, problema) = await Api.GetAsync<List<Favorito>>("api/favoritos"); // ajuste se o endpoint tiver outro caminho
+
+        if (problema != null)
+        {
+            erro = problema.Detail;
+            return;
+        }
+
+        favoritos = resultado;
+    }
+
+    private async Task DeletarFavorito(string id)
+    {
+        var (sucesso, erroDelete) = await Api.DeleteAsync($"api/favoritos/{id}");
+        if (sucesso)
+        {
+            var (resultado, problema) = await Api.GetAsync<List<Favorito>>("api/favoritos");
+            favoritos = resultado ?? new List<Favorito>();
+        }
+        else
+        {
+            erro = "Erro ao deletar o favorito.";
+        }
+    }
+
+
+    public class Favorito
+    {
+        public string Id { get; set; } = "";
+        public string Cidade { get; set; } = "";
+        public string CodigoPais { get; set; } = "";
+        public string NomePais { get; set; } = "";
+    }
+}

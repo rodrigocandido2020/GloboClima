@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
-
-namespace GloboClima.Dominio.Models.PaisResponse
+﻿namespace GloboClima.Dominio.Models.PaisResponse
 {
     public class PaisResponse
     {
@@ -17,5 +10,6 @@ namespace GloboClima.Dominio.Models.PaisResponse
         public Dictionary<string, string> Languages { get; set; }
         public Dictionary<string, Currency> Currencies { get; set; }
         public Flags Flags { get; set; }
+        public Dictionary<string, Translation> Translations { get; set; }
     }
 }

@@ -1,9 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace GloboClima.Web.Shared.LoginViewModels
+namespace GloboClima.API.ViewModels
 {
-    public class loginModel
+    public class LoginViewModel
     {
+#nullable disable
         [Required(ErrorMessage = "Nome usuario é obrigatório.")]
         public string Nome { get; set; }
 

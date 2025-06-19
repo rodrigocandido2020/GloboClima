@@ -5,7 +5,10 @@ using GloboClima.API;
 using GloboClima.API.ProgramStart;
 using GloboClima.Servico.Servicos;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
+using Newtonsoft.Json;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -70,9 +73,72 @@ builder.Services.AddSingleton<IDynamoDBContext, DynamoDBContext>();
 builder.Services.AddSingleton<ServicoUsuario>();
 builder.Services.AddSingleton<CriarUsuarioAdmin>();
 builder.Services.AddSingleton<ServicoPaisClima>();
+builder.Services.AddScoped<ServicoFavorito>();
 
 ConfiguracaoDeInjecaoDeDependencia.BindServices(builder.Services);
+
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new() { Title = "GloboClima API", Version = "v1" });
+
+    c.AddSecurityDefinition("Bearer", new()
+    {
+        Description = "Insira o token JWT no formato: Bearer {seu_token}",
+        Name = "Authorization",
+        In = ParameterLocation.Header,
+        Type = SecuritySchemeType.ApiKey,
+        Scheme = "Bearer"
+    });
+
+    c.AddSecurityRequirement(new()
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new() { Type = ReferenceType.SecurityScheme, Id = "Bearer" }
+            },
+            Array.Empty<string>()
+        }
+    });
+});
+
+
 var app = builder.Build();
+
+app.UseStatusCodePages(async context =>
+{
+    var response = context.HttpContext.Response;
+
+    if (response.StatusCode == StatusCodes.Status401Unauthorized)
+    {
+        var detalhes = new ProblemDetails
+        {
+            Title = "Acesso Não Autorizado!",
+            Status = StatusCodes.Status401Unauthorized,
+            Detail = "Você não tem permissão para acessar este recurso. Token ausente ou inválido.",
+            Instance = context.HttpContext.Request.Path
+        };
+
+        response.ContentType = "application/problem+json";
+        var json = JsonConvert.SerializeObject(detalhes);
+        await response.WriteAsync(json);
+    }
+    else if (response.StatusCode == StatusCodes.Status403Forbidden)
+    {
+        var detalhes = new ProblemDetails
+        {
+            Title = "Acesso Proibido!",
+            Status = StatusCodes.Status403Forbidden,
+            Detail = "Você não tem permissão suficiente para acessar este recurso.",
+            Instance = context.HttpContext.Request.Path
+        };
+
+        response.ContentType = "application/problem+json";
+        var json = JsonConvert.SerializeObject(detalhes);
+        await response.WriteAsync(json);
+    }
+});
+
 
 using (var scope = app.Services.CreateScope())
 {
