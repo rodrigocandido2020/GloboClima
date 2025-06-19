@@ -1,16 +1,16 @@
-﻿using GloboClima.Servico.Servicos;
+﻿using GloboClima.Dominio.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GloboClima.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class PaisClimaController : ControllerBase
+    public class ClimaPaisController : ControllerBase
     {
-        private readonly ServicoPaisClima _servicoPaisClima;
+        private readonly IServicoPaisClima _servicoPaisClima;
 
-        public PaisClimaController(
-            ServicoPaisClima servicoPaisClima
+        public ClimaPaisController(
+            IServicoPaisClima servicoPaisClima
             )
         {
             _servicoPaisClima = servicoPaisClima;

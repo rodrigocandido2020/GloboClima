@@ -1,9 +1,10 @@
-﻿using GloboClima.Dominio.Models.WeatherResponses;
+﻿using GloboClima.Dominio.Interfaces;
+using GloboClima.Dominio.Models.WeatherResponses;
 using System.Text.Json;
 
 namespace GloboClima.Servico.ServicosAPI
 {
-    public class ServicoOpenWeatherMap
+    public class ServicoOpenWeatherMap: IServicoOpenWeatherMap
     {
         private readonly HttpClient _httpClient;
         private const string ApiKey = "d55abc2c6de2871ed289dc7339e26849";

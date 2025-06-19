@@ -1,4 +1,4 @@
-﻿using GloboClima.Servico.Servicos;
+﻿using GloboClima.Dominio.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,15 +9,15 @@ namespace GloboClima.API.Controllers
     [Authorize]
     public class FavoritosController : ControllerBase
     {
-        private readonly ServicoFavorito _servicoFavorito;
+        private readonly IServicoFavorito _servicoFavorito;
         
-        public FavoritosController(ServicoFavorito servicoFavorito)
+        public FavoritosController(IServicoFavorito servicoFavorito)
         {
             _servicoFavorito = servicoFavorito;
         }
 
         [HttpPost]
-        public async Task<IActionResult> AdicionarFavorito([FromBody] string cidade)
+        public async Task<IActionResult> AdicionarFavorito([FromBody] string? cidade)
         {
             var resultado = await _servicoFavorito.SalvarFavoritos(cidade);
             return Ok(resultado);

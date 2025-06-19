@@ -1,4 +1,5 @@
-﻿using GloboClima.Servico.ServicosAPI;
+﻿using GloboClima.Dominio.Interfaces;
+using GloboClima.Servico.ServicosAPI;
 
 namespace GloboClima.API.ProgramStart
 {
@@ -6,8 +7,8 @@ namespace GloboClima.API.ProgramStart
     {
         public static void BindServices(IServiceCollection services)
         {
-            services.AddHttpClient<ServicoOpenWeatherMap>();
-            services.AddHttpClient<ServicoRestCountries>();
+            services.AddHttpClient<IServicoOpenWeatherMap, ServicoOpenWeatherMap>();
+            services.AddHttpClient<IServicoRestCountries, ServicoRestCountries>();
         }
     }
 }

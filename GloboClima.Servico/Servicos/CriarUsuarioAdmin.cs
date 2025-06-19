@@ -13,7 +13,7 @@ namespace GloboClima.Servico.Servicos
 
         public async Task CriarUsuarioAdminAsync()
         {
-            var usuarioExistente = await _usuarioServico.ObterPorIdOuNomeAsync("admin");
+            var usuarioExistente = await _usuarioServico.ObterPorId("admin");
 
             if (usuarioExistente == null)
             {
