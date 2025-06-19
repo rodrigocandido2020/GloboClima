@@ -1,35 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Amazon.DynamoDBv2.DataModel;
-using Amazon.DynamoDBv2;
+﻿using Amazon.DynamoDBv2.DataModel;
 using GloboClima.Dominio.Models.Favoritos;
 using GloboClima.Dominio.Excecoes;
-using GloboClima.Servico.ServicosAPI;
 using GloboClima.Dominio.Models.WeatherResponses;
 using Amazon.DynamoDBv2.DocumentModel;
+using GloboClima.Dominio.Interfaces;
 
 namespace GloboClima.Servico.Servicos
 {
-    public class ServicoFavorito
+    public class ServicoFavorito : IServicoFavorito
     {
-        private readonly DynamoDBContext _context;
-        private readonly ServicoOpenWeatherMap _servicoOpenWeatherMap;
-        private readonly ServicoRestCountries _servicoRestCountries;
+        private readonly IDynamoDBContext _context;
+        private readonly IServicoOpenWeatherMap _servicoOpenWeatherMap;
+        private readonly IServicoRestCountries _servicoRestCountries;
 
         public ServicoFavorito(
-            IAmazonDynamoDB dynamoDb,
-            ServicoOpenWeatherMap servicoOpenWeatherMap,
-            ServicoRestCountries servicoRestCountries)
+            IDynamoDBContext context,
+            IServicoOpenWeatherMap servicoOpenWeatherMap,
+            IServicoRestCountries servicoRestCountries)
         {
-            _context = new DynamoDBContext(dynamoDb);
+            _context = context;
             _servicoOpenWeatherMap = servicoOpenWeatherMap;
             _servicoRestCountries = servicoRestCountries;   
         }
 
-        public async Task<Favorito> SalvarFavoritos(string cidade)
+        public async Task<Favorito> SalvarFavoritos(string? cidade)
         {
             var resultado = await ValidarCidade(cidade);
 
@@ -48,10 +42,10 @@ namespace GloboClima.Servico.Servicos
             return favorito;
         }
 
-        private async Task<WeatherResponse> ValidarCidade(string cidade)
+        private async Task<WeatherResponse> ValidarCidade(string? cidade)
         {
             if (string.IsNullOrWhiteSpace(cidade))
-                throw new BadRequestException("Os campos Cidade,devem ser preenchidos.");
+                throw new BadRequestException("O campo Cidade,devem ser preenchido.");
 
             var resultado = await _servicoOpenWeatherMap.ObterClimaPorCidade(cidade);
 
@@ -76,6 +70,7 @@ namespace GloboClima.Servico.Servicos
             if (favoritos.Any())
                 throw new ConflictException($"A cidade '{cidade}' já está salva nos favoritos.");
         }
+
         public async Task<List<Favorito>> ListarFavoritos()
         {
             var conditions = new List<ScanCondition>();

@@ -1,9 +1,10 @@
-﻿using GloboClima.Dominio.Models.PaisResponse;
+﻿using GloboClima.Dominio.Interfaces;
+using GloboClima.Dominio.Models.PaisResponse;
 using System.Text.Json;
 
 namespace GloboClima.Servico.ServicosAPI
 {
-    public class ServicoRestCountries
+    public class ServicoRestCountries : IServicoRestCountries
     {
         private readonly HttpClient _httpClient;
         private const string BaseUrl = "https://restcountries.com/v3.1/alpha/";

@@ -99,7 +99,7 @@
     {
         erro = null;
 
-        var (clima, erroClima) = await Api.GetAsync<WeatherResponse>($"api/PaisClima/clima?cidade={Uri.EscapeDataString(cidade)}");
+        var (clima, erroClima) = await Api.GetAsync<WeatherResponse>($"api/ClimaPais/clima?cidade={Uri.EscapeDataString(cidade)}");
 
         if (erroClima != null)
         {
@@ -114,7 +114,7 @@
 
         if (!string.IsNullOrWhiteSpace(clima?.Sys?.Country))
         {
-            var (pais, erroPais) = await Api.GetAsync<PaisResponse>($"api/PaisClima/pais?codigo={clima.Sys.Country}");
+            var (pais, erroPais) = await Api.GetAsync<PaisResponse>($"api/ClimaPais/pais?codigo={clima.Sys.Country}");
 
             if (erroPais != null)
             {

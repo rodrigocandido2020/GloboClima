@@ -3,6 +3,7 @@ using Amazon.DynamoDBv2;
 using Amazon.DynamoDBv2.DataModel;
 using GloboClima.API;
 using GloboClima.API.ProgramStart;
+using GloboClima.Dominio.Interfaces;
 using GloboClima.Servico.Servicos;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc;
@@ -72,8 +73,8 @@ builder.Services.AddSingleton<IDynamoDBContext, DynamoDBContext>();
 
 builder.Services.AddSingleton<ServicoUsuario>();
 builder.Services.AddSingleton<CriarUsuarioAdmin>();
-builder.Services.AddSingleton<ServicoPaisClima>();
-builder.Services.AddScoped<ServicoFavorito>();
+builder.Services.AddSingleton<IServicoPaisClima, ServicoClimaPais>();
+builder.Services.AddScoped<IServicoFavorito, ServicoFavorito>();
 
 ConfiguracaoDeInjecaoDeDependencia.BindServices(builder.Services);
 

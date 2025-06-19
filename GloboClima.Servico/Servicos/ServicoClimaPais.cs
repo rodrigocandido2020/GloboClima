@@ -1,17 +1,17 @@
 ﻿using GloboClima.Dominio.Excecoes;
+using GloboClima.Dominio.Interfaces;
 using GloboClima.Dominio.Models.PaisResponse;
 using GloboClima.Dominio.Models.WeatherResponses;
-using GloboClima.Servico.ServicosAPI;
 
 namespace GloboClima.Servico.Servicos
 {
-    public class ServicoPaisClima
+    public class ServicoClimaPais : IServicoPaisClima
     {
-        private readonly ServicoOpenWeatherMap _servicoOpenWeatherMap;
-        private readonly ServicoRestCountries _servicoRestCountries;
-        public ServicoPaisClima(
-            ServicoOpenWeatherMap servicoOpenWeatherMap, 
-            ServicoRestCountries servicoRestCountries)
+        private readonly IServicoOpenWeatherMap _servicoOpenWeatherMap;
+        private readonly IServicoRestCountries _servicoRestCountries;
+        public ServicoClimaPais(
+            IServicoOpenWeatherMap servicoOpenWeatherMap,
+            IServicoRestCountries servicoRestCountries)
         {
             _servicoOpenWeatherMap = servicoOpenWeatherMap;
             _servicoRestCountries = servicoRestCountries;   
