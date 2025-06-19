@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GloboClima.Dominio.Models.PaisResponse
+namespace GloboClima.Web.Shared.PaisResponseViews
 {
     public class Flags
     {

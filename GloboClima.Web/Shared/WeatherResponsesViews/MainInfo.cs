@@ -1,4 +1,4 @@
-﻿namespace GloboClima.Dominio.Models.WeatherResponses
+﻿namespace GloboClima.Web.Shared.WeatherResponsesViews
 {
     public class MainInfo
     {
@@ -6,5 +6,4 @@
         public float Feels_like { get; set; }
         public int Humidity { get; set; }
     }
-
 }

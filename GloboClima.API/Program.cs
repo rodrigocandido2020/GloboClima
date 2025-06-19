@@ -1,3 +1,7 @@
+using Amazon;
+using Amazon.DynamoDBv2;
+using Amazon.DynamoDBv2.DataModel;
+using GloboClima.API;
 using GloboClima.API.ProgramStart;
 using GloboClima.Servico.Servicos;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -6,7 +10,6 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// CORS
 var frontEndCorsPolicy = "FrontEndPolicy";
 
 builder.Services.AddCors(options =>
@@ -20,12 +23,10 @@ builder.Services.AddCors(options =>
         });
 });
 
-// Controllers e Swagger
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Autenticação JWT
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
@@ -43,7 +44,6 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 builder.Services.AddAuthorization();
 
-// Token Service
 builder.Services.AddSingleton<ServicoToken>(sp =>
     new ServicoToken(
         builder.Configuration["Jwt:SecretKey"],
@@ -51,16 +51,42 @@ builder.Services.AddSingleton<ServicoToken>(sp =>
         builder.Configuration["Jwt:Audience"]
     )
 );
+builder.Services.AddDefaultAWSOptions(builder.Configuration.GetAWSOptions("AWS"));
+builder.Services.AddSingleton<IAmazonDynamoDB>(sp =>
+{
+    var config = new AmazonDynamoDBConfig
+    {
+        RegionEndpoint = RegionEndpoint.SAEast1 // ajuste se necessário
+    };
+
+    return new AmazonDynamoDBClient(
+        builder.Configuration["AWS:AccessKey"],
+        builder.Configuration["AWS:SecretKey"],
+        config
+    );
+});
+builder.Services.AddSingleton<IDynamoDBContext, DynamoDBContext>();
+
+builder.Services.AddSingleton<ServicoUsuario>();
+builder.Services.AddSingleton<CriarUsuarioAdmin>();
+builder.Services.AddSingleton<ServicoPaisClima>();
 
 ConfiguracaoDeInjecaoDeDependencia.BindServices(builder.Services);
 var app = builder.Build();
 
-// Dev pipeline
+using (var scope = app.Services.CreateScope())
+{
+    var seeder = scope.ServiceProvider.GetRequiredService<CriarUsuarioAdmin>();
+    await seeder.CriarUsuarioAdminAsync();
+}
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.ConfigurarManipuladorDeExcecoes(app.Services.GetRequiredService<ILoggerFactory>());
 
 app.UseHttpsRedirection();
 
