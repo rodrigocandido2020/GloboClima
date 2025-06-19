@@ -7,36 +7,54 @@
 
 <h3>Login</h3>
 
-<EditForm Model="@loginModel" OnValidSubmit="HandleLogin">
-    <DataAnnotationsValidator />
-    <ValidationSummary />
+@if (jaLogado)
+{
+    <div class="alert alert-info">Você já está logado.</div>
+    <button class="btn btn-danger" @onclick="Logout">
+        <span class="oi oi-account-logout me-1"></span> Sair
+    </button>
+}
 
-    <div class="col-4">
-        <div class="mb-3">
-            <label class="form-label">Usuário</label>
-            <InputText class="form-control" @bind-Value="loginModel.NomeUsuario" />
-            <ValidationMessage For="@(() => loginModel.NomeUsuario)" />
+@if (!jaLogado)
+{
+    <EditForm Model="@loginModel" OnValidSubmit="HandleLogin">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <div class="col-4">
+            <div class="mb-3">
+                <label class="form-label">Usuário</label>
+                <InputText class="form-control" @bind-Value="loginModel.Nome" />
+                <ValidationMessage For="@(() => loginModel.Nome)" />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Senha</label>
+                <InputText class="form-control" @bind-Value="loginModel.Senha" type="password" />
+                <ValidationMessage For="@(() => loginModel.Senha)" />
+            </div>
         </div>
 
-        <div class="mb-3">
-            <label class="form-label">Senha</label>
-            <InputText class="form-control" @bind-Value="loginModel.Senha" type="password" />
-            <ValidationMessage For="@(() => loginModel.Senha)" />
-        </div>
-    </div>
 
+        @if (!string.IsNullOrEmpty(erro))
+        {
+            <div class="alert alert-danger">@erro</div>
+        }
 
-    @if (!string.IsNullOrEmpty(erro))
-    {
-        <div class="alert alert-danger">@erro</div>
-    }
-
-    <button type="submit" class="btn btn-primary">Entrar</button>
-</EditForm>
+        <button type="submit" class="btn btn-primary">Entrar</button>
+    </EditForm>
+}
 
 @code {
     private loginModel loginModel = new();
     private string? erro;
+    private bool jaLogado = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var token = await JS.InvokeAsync<string>("localStorage.getItem", "authToken");
+        jaLogado = !string.IsNullOrWhiteSpace(token);
+    }
 
     private async Task HandleLogin()
     {
@@ -55,5 +73,11 @@
             await JS.InvokeVoidAsync("localStorage.setItem", "authToken", resultado.Token);
             Navigation.NavigateTo("/");
         }
+    }
+
+    private async Task Logout()
+    {
+        await JS.InvokeVoidAsync("localStorage.removeItem", "authToken");
+        Navigation.NavigateTo("/login", forceLoad: true);
     }
 }

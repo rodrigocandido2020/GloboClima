@@ -6,6 +6,7 @@ using GloboClima.API.ProgramStart;
 using GloboClima.Servico.Servicos;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -70,8 +71,36 @@ builder.Services.AddSingleton<IDynamoDBContext, DynamoDBContext>();
 builder.Services.AddSingleton<ServicoUsuario>();
 builder.Services.AddSingleton<CriarUsuarioAdmin>();
 builder.Services.AddSingleton<ServicoPaisClima>();
+builder.Services.AddScoped<ServicoFavorito>();
 
 ConfiguracaoDeInjecaoDeDependencia.BindServices(builder.Services);
+
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new() { Title = "GloboClima API", Version = "v1" });
+
+    c.AddSecurityDefinition("Bearer", new()
+    {
+        Description = "Insira o token JWT no formato: Bearer {seu_token}",
+        Name = "Authorization",
+        In = ParameterLocation.Header,
+        Type = SecuritySchemeType.ApiKey,
+        Scheme = "Bearer"
+    });
+
+    c.AddSecurityRequirement(new()
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new() { Type = ReferenceType.SecurityScheme, Id = "Bearer" }
+            },
+            Array.Empty<string>()
+        }
+    });
+});
+
+
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
