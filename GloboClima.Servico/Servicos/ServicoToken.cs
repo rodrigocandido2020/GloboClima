@@ -18,11 +18,11 @@ namespace GloboClima.Servico.Servicos
             _audience = audience;
         }
 
-        public string GerarToken()
+        public string GerarToken(string nomeUsuario)
         {
             var claims = new[]
             {
-            new Claim(ClaimTypes.Name, "usuario_teste"),
+            new Claim(ClaimTypes.Name, nomeUsuario),
         };
 
             var chaveSecreta = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_secretKey));

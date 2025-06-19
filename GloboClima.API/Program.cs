@@ -1,6 +1,7 @@
 using Amazon;
 using Amazon.DynamoDBv2;
 using Amazon.DynamoDBv2.DataModel;
+using GloboClima.API;
 using GloboClima.API.ProgramStart;
 using GloboClima.Servico.Servicos;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -72,15 +73,16 @@ builder.Services.AddSingleton<IAmazonDynamoDB>(sp =>
 builder.Services.AddSingleton<IDynamoDBContext, DynamoDBContext>();
 
 // Serviços relacionados ao DynamoDB
-builder.Services.AddSingleton<UsuarioServico>();
-builder.Services.AddSingleton<UsuarioSeeder>();
+builder.Services.AddSingleton<ServicoUsuario>();
+builder.Services.AddSingleton<CriarUsuarioAdmin>();
+builder.Services.AddSingleton<ServicoPaisClima>();
 
 ConfiguracaoDeInjecaoDeDependencia.BindServices(builder.Services);
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
 {
-    var seeder = scope.ServiceProvider.GetRequiredService<UsuarioSeeder>();
+    var seeder = scope.ServiceProvider.GetRequiredService<CriarUsuarioAdmin>();
     await seeder.CriarUsuarioAdminAsync();
 }
 
@@ -90,6 +92,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.ConfigurarManipuladorDeExcecoes(app.Services.GetRequiredService<ILoggerFactory>());
 
 app.UseHttpsRedirection();
 

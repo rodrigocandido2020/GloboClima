@@ -1,29 +1,27 @@
 ﻿using Amazon.DynamoDBv2;
-using Amazon.DynamoDBv2.DataModel;
 using GloboClima.API.Models;
-using GloboClima.Dominio.Models.Usuarios;
 using GloboClima.Servico.Servicos;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GloboClima.API.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class AuthController : ControllerBase
     {
-        private readonly ServicoToken _tokenService;
-        public AuthController(ServicoToken tokenService)
+        private readonly ServicoUsuario _usuarioServico;
+        public AuthController(ServicoUsuario usuarioServico)
         {
-            _tokenService = tokenService;
+            _usuarioServico = usuarioServico;
         }
 
         [HttpPost]
-        public IActionResult Login(LoginViewModels? loginDTO)
+        public async Task<IActionResult> Login(LoginViewModels? login)
         {
-            if (loginDTO == null)
+            if (login == null)
                 return BadRequest("Os dados de login são obrigatórios.");
 
-            var token = _tokenService.GerarToken();
+            var token = await _usuarioServico.ValidarLoginEGerarTokenAsync(login.NomeUsuario, login.Senha);
             return Ok(new { Token = token });
         }
 

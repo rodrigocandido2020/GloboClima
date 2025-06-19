@@ -7,7 +7,6 @@ namespace GloboClima.Dominio.Models.Usuarios
     {
         [DynamoDBHashKey] // Chave primária
         public string Id { get; set; }
-
         public string Nome { get; set; }
         public string Senha { get; set; }
     }

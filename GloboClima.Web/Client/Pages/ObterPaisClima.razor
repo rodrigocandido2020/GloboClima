@@ -1,9 +1,10 @@
-@page "/obter-clima"
+@page "/obter-pais-clima"
 @using GloboClima.Web.Shared.PaisResponseViews
 @using GloboClima.Web.Shared.WeatherResponsesViews
-@inject HttpClient Http
+@using GloboClima.Web.Shared.Servico
+@inject servicoAPI Api
 
-<h3>Obter Clima</h3>
+<h3>Obter Clima País</h3>
 
 <div class="form-group col-4">
     <form @onsubmit="BuscarClima">
@@ -57,29 +58,45 @@
     </div>
 }
 
+@if (!string.IsNullOrEmpty(erro))
+{
+    <div class="mt-3 alert alert-danger">@erro</div>
+}
+
 @code {
     private string cidade = "";
     private WeatherResponse? climaResultado;
     private PaisResponse? paisResultado;
+    private string? erro;
 
     private async Task BuscarClima()
     {
-        if (!string.IsNullOrWhiteSpace(cidade))
+        erro = null;
+     
+        var (clima, erroClima) = await Api.GetAsync<WeatherResponse>($"api/PaisClima/clima?cidade={Uri.EscapeDataString(cidade)}");
+
+        if (erroClima != null)
         {
-            try
+            erro = erroClima.Detail;
+            climaResultado = null;
+            paisResultado = null;
+            return;
+        }
+
+        climaResultado = clima;
+
+        if (!string.IsNullOrWhiteSpace(clima?.Sys?.Country))
+        {
+            var (pais, erroPais) = await Api.GetAsync<PaisResponse>($"api/PaisClima/pais?codigo={clima.Sys.Country}");
+
+            if (erroPais != null)
             {
-                climaResultado = await Http.GetFromJsonAsync<WeatherResponse>($"api/PaisClima/clima?cidade={Uri.EscapeDataString(cidade)}");
-                if (climaResultado?.Sys?.Country != null)
-                {
-                    paisResultado = await Http.GetFromJsonAsync<PaisResponse>($"api/PaisClima/pais?codigo={climaResultado.Sys.Country}");
-                }
-            }
-            catch (HttpRequestException)
-            {
-                climaResultado = null;
+                erro = erroPais.Detail;
                 paisResultado = null;
+                return;
             }
 
+            paisResultado = pais;
         }
     }
 }

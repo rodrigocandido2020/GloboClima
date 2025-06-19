@@ -1,4 +1,5 @@
-﻿using GloboClima.Servico.ServicosAPI;
+﻿using GloboClima.Servico.Servicos;
+using GloboClima.Servico.ServicosAPI;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GloboClima.API.Controllers
@@ -7,44 +8,27 @@ namespace GloboClima.API.Controllers
     [Route("api/[controller]")]
     public class PaisClimaController : ControllerBase
     {
-        private readonly ServicoOpenWeatherMap _servicoOpenWeatherMap;
-        private readonly ServicoRestCountries _servicoRestCountries;
+        private readonly ServicoPaisClima _servicoPaisClima;
 
         public PaisClimaController(
-            ServicoOpenWeatherMap servicoOpenWeatherMap,
-            ServicoRestCountries servicoRestCountries
+            ServicoPaisClima servicoPaisClima
             )
         {
-            _servicoOpenWeatherMap = servicoOpenWeatherMap;
-            _servicoRestCountries = servicoRestCountries;
+            _servicoPaisClima = servicoPaisClima;
         }
 
         [HttpGet("clima")]
         public async Task<IActionResult> ObterClima([FromQuery] string? cidade)
         {
-            if (string.IsNullOrWhiteSpace(cidade))
-                return BadRequest("Cidade é obrigatória.");
-
-            var resultado = await _servicoOpenWeatherMap.ObterClimaPorCidade(cidade);
-
-            if (resultado == null)
-                return NotFound("Não foi possível obter o clima para a cidade informada.");
-
+            var resultado = await _servicoPaisClima.ObterClimaCidade(cidade);
             return Ok(resultado);
         }
 
         [HttpGet("pais")]
         public async Task<IActionResult> ObterPais([FromQuery] string? codigo)
         {
-            if (string.IsNullOrWhiteSpace(codigo))
-                return BadRequest("Código do país é obrigatório.");
-
-            var pais = await _servicoRestCountries.ObterPaisPorCodigo(codigo);
-
-            if (pais == null)
-                return NotFound("País não encontrado para o código informado.");
-
-            return Ok(pais);
+            var resultado = await _servicoPaisClima.ObterDadosPais(codigo);
+            return Ok(resultado);
         }
     }
 }
