@@ -11,8 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GloboClima.Web.Shared", "Gl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GloboClima.Dominio", "GloboClima.Dominio\GloboClima.Dominio.csproj", "{9D5E3075-33A6-49F6-A565-ABE642B0B2FC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GloboClima.Infra", "GloboClima.Infra\GloboClima.Infra.csproj", "{9D8BE086-5793-46ED-B70C-239202228EBD}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GloboClima.Servico", "GloboClima.Servico\GloboClima.Servico.csproj", "{0D4C3C5C-1636-4760-9FDE-97B572B10436}"
 	ProjectSection(ProjectDependencies) = postProject
 		{9D5E3075-33A6-49F6-A565-ABE642B0B2FC} = {9D5E3075-33A6-49F6-A565-ABE642B0B2FC}
@@ -40,10 +38,6 @@ Global
 		{9D5E3075-33A6-49F6-A565-ABE642B0B2FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9D5E3075-33A6-49F6-A565-ABE642B0B2FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9D5E3075-33A6-49F6-A565-ABE642B0B2FC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9D8BE086-5793-46ED-B70C-239202228EBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9D8BE086-5793-46ED-B70C-239202228EBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9D8BE086-5793-46ED-B70C-239202228EBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9D8BE086-5793-46ED-B70C-239202228EBD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0D4C3C5C-1636-4760-9FDE-97B572B10436}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0D4C3C5C-1636-4760-9FDE-97B572B10436}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0D4C3C5C-1636-4760-9FDE-97B572B10436}.Release|Any CPU.ActiveCfg = Release|Any CPU
