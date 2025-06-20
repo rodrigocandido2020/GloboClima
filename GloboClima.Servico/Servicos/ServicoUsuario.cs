@@ -1,10 +1,11 @@
 ﻿using Amazon.DynamoDBv2.DataModel;
 using GloboClima.Dominio.Excecoes;
+using GloboClima.Dominio.Interfaces;
 using GloboClima.Dominio.Models.Usuarios;
 
 namespace GloboClima.Servico.Servicos
 {
-    public class ServicoUsuario
+    public class ServicoUsuario : IServicoUsuario
     {
         private readonly IDynamoDBContext _context;
         private readonly ServicoToken _tokenService;
@@ -35,7 +36,7 @@ namespace GloboClima.Servico.Servicos
             if (usuario == null)
                 throw new NotFoundException($"Usuário com Nome '{NomeUsuario}' não encontrado.");
 
-            if (usuario.Senha != Senha)
+            if (!usuario.Senha.Equals(Senha))
                 throw new UnauthorizedException("Usuário ou senha inválidos.");
 
             return _tokenService.GerarToken(usuario.Nome);

@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
-namespace GloboClima.API
+namespace GloboClima.API.Extensoes
 {
-    public static class ConfigurarStatusCodePages
+    public static class ConfigurarStatusCodeExtensoes
     {
         public static void ConfigurarStatusCodesPage(this IApplicationBuilder app)
         {

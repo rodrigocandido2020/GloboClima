@@ -1,12 +1,13 @@
-﻿using GloboClima.Dominio.Models.Usuarios;
+﻿using GloboClima.Dominio.Interfaces;
+using GloboClima.Dominio.Models.Usuarios;
 
 namespace GloboClima.Servico.Servicos
 {
     public class CriarUsuarioAdmin
     {
-        private readonly ServicoUsuario _usuarioServico;
+        private readonly IServicoUsuario _usuarioServico;
 
-        public CriarUsuarioAdmin(ServicoUsuario usuarioServico)
+        public CriarUsuarioAdmin(IServicoUsuario usuarioServico)
         {
             _usuarioServico = usuarioServico;
         }

@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
-namespace GloboClima.API
+namespace GloboClima.API.Extensoes
 {
     public static class ExcecoesExtensoes
     {
@@ -99,7 +99,7 @@ namespace GloboClima.API
         private static void ConfigurarDetalhesErroGenerico(ProblemDetails problemDetails, Exception exception, ILogger logger)
         {
             logger.LogError($"Unexpected error: {exception}");
-                
+
             problemDetails.Title = "Erro Interno no Servidor";
             problemDetails.Status = StatusCodes.Status500InternalServerError;
             problemDetails.Detail = exception.Demystify().ToString();

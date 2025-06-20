@@ -3,19 +3,26 @@ using GloboClima.Dominio.Interfaces;
 using GloboClima.Servico.Servicos;
 using GloboClima.Servico.ServicosAPI;
 
-namespace GloboClima.API.ProgramStart
+namespace GloboClima.API.Extensoes
 {
-    public class ConfiguracaoDeInjecaoDeDependencia
+    public static class DependencyInjectionExtensions
     {
-        public static void BindServices(IServiceCollection services)
+        public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
+            // APIs externas
             services.AddHttpClient<IServicoOpenWeatherMap, ServicoOpenWeatherMap>();
             services.AddHttpClient<IServicoRestCountries, ServicoRestCountries>();
+
+            // AWS
             services.AddSingleton<IDynamoDBContext, DynamoDBContext>();
-            services.AddSingleton<ServicoUsuario>();
-            services.AddSingleton<CriarUsuarioAdmin>();
+
+            // Serviços de domínio
             services.AddSingleton<IServicoPaisClima, ServicoClimaPais>();
             services.AddScoped<IServicoFavorito, ServicoFavorito>();
+            services.AddSingleton<IServicoUsuario, ServicoUsuario>();
+            services.AddSingleton<CriarUsuarioAdmin>();
+
+            return services;
         }
     }
 }

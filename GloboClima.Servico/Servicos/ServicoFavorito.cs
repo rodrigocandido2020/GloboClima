@@ -45,7 +45,7 @@ namespace GloboClima.Servico.Servicos
         private async Task<WeatherResponse> ValidarCidade(string? cidade)
         {
             if (string.IsNullOrWhiteSpace(cidade))
-                throw new BadRequestException("O campo Cidade,devem ser preenchido.");
+                throw new BadRequestException("O campo Cidade, deve ser preenchido.");
 
             var resultado = await _servicoOpenWeatherMap.ObterClimaPorCidade(cidade);
 

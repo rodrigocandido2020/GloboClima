@@ -1,15 +1,11 @@
 using Amazon;
 using Amazon.DynamoDBv2;
-using Amazon.DynamoDBv2.DataModel;
-using GloboClima.API;
-using GloboClima.API.ProgramStart;
-using GloboClima.Dominio.Interfaces;
+using GloboClima.API.Extensoes;
+using GloboClima.Dominio.Models.WeatherResponses;
 using GloboClima.Servico.Servicos;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using Newtonsoft.Json;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -56,6 +52,10 @@ builder.Services.AddSingleton<ServicoToken>(sp =>
     )
 );
 builder.Services.AddDefaultAWSOptions(builder.Configuration.GetAWSOptions("AWS"));
+
+builder.Services.Configure<OpenWeatherMapSettings>(
+    builder.Configuration.GetSection("OpenWeatherMap"));
+
 builder.Services.AddSingleton<IAmazonDynamoDB>(sp =>
 {
     var config = new AmazonDynamoDBConfig
@@ -70,7 +70,7 @@ builder.Services.AddSingleton<IAmazonDynamoDB>(sp =>
     );
 });
 
-ConfiguracaoDeInjecaoDeDependencia.BindServices(builder.Services);
+builder.Services.AddApplicationServices();
 
 builder.Services.AddSwaggerGen(c =>
 {
