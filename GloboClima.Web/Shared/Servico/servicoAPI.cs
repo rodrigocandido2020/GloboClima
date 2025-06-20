@@ -1,17 +1,17 @@
 ﻿using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Text.Json;
-using GloboClima.Web.Shared.ProblemDetails;
+using GloboClima.Web.Shared.ViewModels;
 using Microsoft.JSInterop;
 
 namespace GloboClima.Web.Shared.Servico
 {
-    public class servicoAPI
+    public class ServicoAPI
     {
         private readonly HttpClient _http;
         private readonly IJSRuntime _jsRuntime;
 
-        public servicoAPI(
+        public ServicoAPI(
             HttpClient http,
             IJSRuntime jsRuntime
             )
@@ -20,19 +20,19 @@ namespace GloboClima.Web.Shared.Servico
             _jsRuntime = jsRuntime;
         }
 
-        public Task<(T? Resultado, ProblemDetail? Erro)> GetAsync<T>(string url) =>
+        public Task<(T? Resultado, ProblemDetailViewModel? Erro)> GetAsync<T>(string url) =>
             RequestAsync<T>(HttpMethod.Get, url);
 
-        public Task<(T? Resultado, ProblemDetail? Erro)> PostAsync<T>(string url, object? body) =>
+        public Task<(T? Resultado, ProblemDetailViewModel? Erro)> PostAsync<T>(string url, object? body) =>
             RequestAsync<T>(HttpMethod.Post, url, body);
 
-        public async Task<(bool Sucesso, ProblemDetail? Erro)> DeleteAsync(string url)
+        public async Task<(bool Sucesso, ProblemDetailViewModel? Erro)> DeleteAsync(string url)
         {
             var (ok, erro) = await RequestAsync<object>(HttpMethod.Delete, url);
             return (erro == null, erro);
         }
 
-        private async Task<(T? Resultado, ProblemDetail? Erro)> RequestAsync<T>(HttpMethod method, string url, object? body = null)
+        private async Task<(T? Resultado, ProblemDetailViewModel? Erro)> RequestAsync<T>(HttpMethod method, string url, object? body = null)
         {
             try
             {
@@ -59,14 +59,14 @@ namespace GloboClima.Web.Shared.Servico
                 }
 
                 var json = await response.Content.ReadAsStringAsync();
-                var erro = JsonSerializer.Deserialize<ProblemDetail>(json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true })
-                           ?? new ProblemDetail { Detail = "Erro desconhecido." };
+                var erro = JsonSerializer.Deserialize<ProblemDetailViewModel>(json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true })
+                           ?? new ProblemDetailViewModel { Detail = "Erro desconhecido." };
 
                 return (default, erro);
             }
             catch (Exception ex)
             {
-                return (default, new ProblemDetail { Title = "Erro de comunicação", Detail = ex.Message });
+                return (default, new ProblemDetailViewModel { Title = "Erro de comunicação", Detail = ex.Message });
             }
         }
     }

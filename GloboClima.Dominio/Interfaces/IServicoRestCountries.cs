@@ -4,6 +4,6 @@ namespace GloboClima.Dominio.Interfaces
 {
     public interface IServicoRestCountries
     {
-        Task<PaisResponse?> ObterPaisPorCodigo(string codigo);
+        Task<PaisResponse?> ObterDadosPais(string codigo);
     }
 }

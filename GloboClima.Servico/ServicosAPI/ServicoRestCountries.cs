@@ -13,7 +13,7 @@ namespace GloboClima.Servico.ServicosAPI
             _httpClient = httpClient;
         }
 
-        public async Task<PaisResponse?> ObterPaisPorCodigo(string codigo)
+        public async Task<PaisResponse?> ObterDadosPais(string codigo)
         {
             var url = $"{BaseUrl}{codigo}";
 

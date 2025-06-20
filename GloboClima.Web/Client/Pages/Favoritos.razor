@@ -1,6 +1,7 @@
 ﻿@page "/favoritos"
 @using GloboClima.Web.Shared.Servico
-@inject servicoAPI Api
+@using GloboClima.Web.Shared.ViewModels
+@inject ServicoFavorito ServicoFavorito
 
 <h3>Favoritos</h3>
 
@@ -8,15 +9,18 @@
 {
     <div class="alert alert-danger">@erro</div>
 }
-else if (favoritos == null)
+
+@if (string.IsNullOrWhiteSpace(erro) && favoritos == null)
 {
     <p><em>Carregando favoritos...</em></p>
 }
-else if (favoritos.Count == 0)
+
+@if (string.IsNullOrWhiteSpace(erro) && favoritos is { Count: 0 })
 {
     <div class="alert alert-info">Nenhum favorito salvo ainda.</div>
 }
-else
+
+@if (string.IsNullOrWhiteSpace(erro) && favoritos is { Count: > 0 })
 {
     <table class="table table-striped">
         <thead>
@@ -46,42 +50,26 @@ else
 }
 
 @code {
-    private List<Favorito>? favoritos;
+    private List<FavoritoViewModel>? favoritos;
     private string? erro;
 
     protected override async Task OnInitializedAsync()
     {
-        var (resultado, problema) = await Api.GetAsync<List<Favorito>>("api/favoritos"); // ajuste se o endpoint tiver outro caminho
-
-        if (problema != null)
-        {
-            erro = problema.Detail;
-            return;
-        }
-
-        favoritos = resultado;
+        var (lista, erroMsg) = await ServicoFavorito.ObterFavoritosAsync();
+        favoritos = lista;
+        erro = erroMsg;
     }
 
     private async Task DeletarFavorito(string id)
     {
-        var (sucesso, erroDelete) = await Api.DeleteAsync($"api/favoritos/{id}");
+        var (sucesso, listaAtualizada, erroMsg) = await ServicoFavorito.DeletarFavoritoAsync(id);
         if (sucesso)
         {
-            var (resultado, problema) = await Api.GetAsync<List<Favorito>>("api/favoritos");
-            favoritos = resultado ?? new List<Favorito>();
+            favoritos = listaAtualizada;
         }
         else
         {
-            erro = "Erro ao deletar o favorito.";
+            erro = erroMsg;
         }
-    }
-
-
-    public class Favorito
-    {
-        public string Id { get; set; } = "";
-        public string Cidade { get; set; } = "";
-        public string CodigoPais { get; set; } = "";
-        public string NomePais { get; set; } = "";
     }
 }

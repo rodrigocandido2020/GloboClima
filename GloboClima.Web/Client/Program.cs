@@ -10,7 +10,10 @@ builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://localhost:7102") });
-builder.Services.AddScoped<servicoAPI>();
+builder.Services.AddScoped<ServicoAPI>();
+builder.Services.AddScoped<ServicoFavorito>();
+builder.Services.AddScoped<ServicoLogin>();
+builder.Services.AddScoped<ServicoClimaPais>();
 builder.Services.AddAuthorizationCore();
 builder.Services.AddScoped<AuthenticationStateProvider, JwtAuthenticationStateProvider>();
 

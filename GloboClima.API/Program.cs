@@ -69,12 +69,6 @@ builder.Services.AddSingleton<IAmazonDynamoDB>(sp =>
         config
     );
 });
-builder.Services.AddSingleton<IDynamoDBContext, DynamoDBContext>();
-
-builder.Services.AddSingleton<ServicoUsuario>();
-builder.Services.AddSingleton<CriarUsuarioAdmin>();
-builder.Services.AddSingleton<IServicoPaisClima, ServicoClimaPais>();
-builder.Services.AddScoped<IServicoFavorito, ServicoFavorito>();
 
 ConfiguracaoDeInjecaoDeDependencia.BindServices(builder.Services);
 
@@ -103,48 +97,12 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
-
 var app = builder.Build();
-
-app.UseStatusCodePages(async context =>
-{
-    var response = context.HttpContext.Response;
-
-    if (response.StatusCode == StatusCodes.Status401Unauthorized)
-    {
-        var detalhes = new ProblemDetails
-        {
-            Title = "Acesso Não Autorizado!",
-            Status = StatusCodes.Status401Unauthorized,
-            Detail = "Você não tem permissão para acessar este recurso. Token ausente ou inválido.",
-            Instance = context.HttpContext.Request.Path
-        };
-
-        response.ContentType = "application/problem+json";
-        var json = JsonConvert.SerializeObject(detalhes);
-        await response.WriteAsync(json);
-    }
-    else if (response.StatusCode == StatusCodes.Status403Forbidden)
-    {
-        var detalhes = new ProblemDetails
-        {
-            Title = "Acesso Proibido!",
-            Status = StatusCodes.Status403Forbidden,
-            Detail = "Você não tem permissão suficiente para acessar este recurso.",
-            Instance = context.HttpContext.Request.Path
-        };
-
-        response.ContentType = "application/problem+json";
-        var json = JsonConvert.SerializeObject(detalhes);
-        await response.WriteAsync(json);
-    }
-});
-
 
 using (var scope = app.Services.CreateScope())
 {
     var seeder = scope.ServiceProvider.GetRequiredService<CriarUsuarioAdmin>();
-    await seeder.CriarUsuarioAdminAsync();
+    await seeder.CriarUsuarioAdministrador();
 }
 
 if (app.Environment.IsDevelopment())
@@ -152,6 +110,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.ConfigurarStatusCodesPage();
 
 app.ConfigurarManipuladorDeExcecoes(app.Services.GetRequiredService<ILoggerFactory>());
 

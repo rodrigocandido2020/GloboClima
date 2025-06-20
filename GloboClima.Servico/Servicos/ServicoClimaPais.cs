@@ -9,6 +9,7 @@ namespace GloboClima.Servico.Servicos
     {
         private readonly IServicoOpenWeatherMap _servicoOpenWeatherMap;
         private readonly IServicoRestCountries _servicoRestCountries;
+
         public ServicoClimaPais(
             IServicoOpenWeatherMap servicoOpenWeatherMap,
             IServicoRestCountries servicoRestCountries)
@@ -35,7 +36,7 @@ namespace GloboClima.Servico.Servicos
             if (string.IsNullOrWhiteSpace(codigo))
                 throw new BadRequestException("Código do país é obrigatório.");
 
-            var resultado = await _servicoRestCountries.ObterPaisPorCodigo(codigo);
+            var resultado = await _servicoRestCountries.ObterDadosPais(codigo);
 
             if (resultado == null)
                 throw new NotFoundException("País não encontrado para o código informado.");

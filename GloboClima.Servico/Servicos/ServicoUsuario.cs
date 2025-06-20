@@ -22,13 +22,13 @@ namespace GloboClima.Servico.Servicos
             await _context.SaveAsync(usuario);
         }
 
-        public async Task<Usuario?> ObterPorId(string idOuNome)
+        public async Task<Usuario?> ObterPorId(string id)
         {
-            var usuario = await _context.LoadAsync<Usuario>(idOuNome);
+            var usuario = await _context.LoadAsync<Usuario>(id);
             return usuario;
         }
 
-        public async Task<string> ValidarLoginEGerarTokenAsync(string NomeUsuario, string Senha)
+        public async Task<string> ValidarLoginEGerarToken(string NomeUsuario, string Senha)
         {
             var usuario = await _context.LoadAsync<Usuario>(NomeUsuario);
 

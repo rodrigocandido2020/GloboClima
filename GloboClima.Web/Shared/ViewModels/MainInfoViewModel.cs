@@ -1,6 +1,6 @@
-﻿namespace GloboClima.Web.Shared.WeatherResponsesViews
+﻿namespace GloboClima.Web.Shared.ViewModels
 {
-    public class MainInfo
+    public class MainInfoViewModel
     {
         public float Temp { get; set; }
         public float Feels_like { get; set; }
