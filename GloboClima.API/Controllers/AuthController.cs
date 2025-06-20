@@ -1,5 +1,4 @@
-﻿using Amazon.DynamoDBv2;
-using GloboClima.API.ModelDto;
+﻿using GloboClima.API.ModelDto;
 using GloboClima.Servico.Servicos;
 using Microsoft.AspNetCore.Mvc;
 
@@ -23,13 +22,6 @@ namespace GloboClima.API.Controllers
 
             var token = await _usuarioServico.ValidarLoginEGerarToken(login.Nome, login.Senha);
             return Ok(new { Token = token });
-        }
-
-        [HttpGet("debug-tabelas")]
-        public async Task<IActionResult> ListarTabelas([FromServices] IAmazonDynamoDB dynamoDb)
-        {
-            var response = await dynamoDb.ListTablesAsync();
-            return Ok(response.TableNames);
         }
     }
 }
