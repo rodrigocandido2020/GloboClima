@@ -1,8 +1,8 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace GloboClima.Web.Shared.ProblemDetails
+namespace GloboClima.Web.Shared.ViewModels
 {
-    public class ProblemDetail
+    public class ProblemDetailViewModel
     {
         [JsonPropertyName("type")]
         public string? Type { get; set; }

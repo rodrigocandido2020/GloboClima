@@ -27,7 +27,7 @@ namespace GloboClima.Servico.Servicos
         {
             var resultado = await ValidarCidade(cidade);
 
-            var resultadoNomePais = await _servicoRestCountries.ObterPaisPorCodigo(resultado.Sys.Country);
+            var resultadoNomePais = await _servicoRestCountries.ObterDadosPais(resultado.Sys.Country);
 
             var favorito = new Favorito
             {

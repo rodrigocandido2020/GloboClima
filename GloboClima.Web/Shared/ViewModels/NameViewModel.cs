@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GloboClima.Web.Shared.PaisResponseViews
+namespace GloboClima.Web.Shared.ViewModels
 {
-    public class Name
+    public class NameViewModel
     {
         public string Common { get; set; }
         public string Official { get; set; }

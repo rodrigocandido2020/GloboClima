@@ -6,5 +6,4 @@
         public float Feels_like { get; set; }
         public int Humidity { get; set; }
     }
-
 }

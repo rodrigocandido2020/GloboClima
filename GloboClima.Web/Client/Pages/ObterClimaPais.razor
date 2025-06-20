@@ -1,11 +1,8 @@
-@page "/obter-pais-clima"
-@using GloboClima.Web.Shared.FavoritosViewModels
-@using GloboClima.Web.Shared.PaisResponseViews
-@using GloboClima.Web.Shared.WeatherResponsesViews
+@page "/obter-clima-pais"
 @using GloboClima.Web.Shared.Servico
+@using GloboClima.Web.Shared.ViewModels
 @using Microsoft.AspNetCore.Components.Authorization
-@inject servicoAPI Api
-@inject IJSRuntime JS
+@inject ServicoClimaPais ServicoClimaPais
 
 <h3>Obter Clima País</h3>
 
@@ -85,8 +82,8 @@
 
 @code {
     private string cidade = "";
-    private WeatherResponse? climaResultado;
-    private PaisResponse? paisResultado;
+    private WeatherResponseViewModel? climaResultado;
+    private PaisViewModel? paisResultado;
     private string? erro;
     private string? cidadePesquisaAtual;
     private bool mostrarMensagemSucesso;
@@ -99,11 +96,11 @@
     {
         erro = null;
 
-        var (clima, erroClima) = await Api.GetAsync<WeatherResponse>($"api/ClimaPais/clima?cidade={Uri.EscapeDataString(cidade)}");
+        var (clima, erroClima) = await ServicoClimaPais.ObterClimaAsync(cidade);
 
         if (erroClima != null)
         {
-            erro = erroClima.Detail;
+            erro = erroClima;
             climaResultado = null;
             paisResultado = null;
             return;
@@ -114,11 +111,11 @@
 
         if (!string.IsNullOrWhiteSpace(clima?.Sys?.Country))
         {
-            var (pais, erroPais) = await Api.GetAsync<PaisResponse>($"api/ClimaPais/pais?codigo={clima.Sys.Country}");
+            var (pais, erroPais) = await ServicoClimaPais.ObterPaisAsync(clima.Sys.Country);
 
             if (erroPais != null)
             {
-                erro = erroPais.Detail;
+                erro = erroPais;
                 paisResultado = null;
                 return;
             }
@@ -130,21 +127,20 @@
     private async Task SalvarFavorito()
     {
         erro = null;
-        var (_, problema) = await Api.PostAsync<Favorito>("api/favoritos", climaResultado!.Name);
 
-        if (problema != null)
+        var erroSalvar = await ServicoClimaPais.SalvarFavoritoAsync(climaResultado!.Name);
+
+        if (erroSalvar != null)
         {
-            erro = problema.Detail;
+            erro = erroSalvar;
             mostrarMensagemSucesso = false;
             return;
         }
 
         mostrarMensagemSucesso = true;
         StateHasChanged();
-        // Aguarda 3 segundos e depois esconde
         await Task.Delay(3000);
         mostrarMensagemSucesso = false;
-
         StateHasChanged();
     }
 }

@@ -1,9 +1,7 @@
 ﻿@page "/login"
-@using GloboClima.Web.Shared.LoginViewModels
 @using GloboClima.Web.Shared.Servico
-@inject NavigationManager Navigation
-@inject IJSRuntime JS
-@inject servicoAPI Api
+@using GloboClima.Web.Shared.ViewModels
+@inject ServicoLogin ServicoLogin
 
 <h3>Login</h3>
 
@@ -17,7 +15,7 @@
 
 @if (!jaLogado)
 {
-    <EditForm Model="@loginModel" OnValidSubmit="HandleLogin">
+    <EditForm Model="@loginModel" OnValidSubmit="EfetuarLogin">
         <DataAnnotationsValidator />
         <ValidationSummary />
 
@@ -46,38 +44,29 @@
 }
 
 @code {
-    private loginModel loginModel = new();
+    private LoginViewModel loginModel = new();
     private string? erro;
     private bool jaLogado = false;
 
     protected override async Task OnInitializedAsync()
     {
-        var token = await JS.InvokeAsync<string>("localStorage.getItem", "authToken");
-        jaLogado = !string.IsNullOrWhiteSpace(token);
+        jaLogado = await ServicoLogin.UsuarioJaLogado();
     }
 
-    private async Task HandleLogin()
+    private async Task EfetuarLogin()
     {
         erro = null;
 
-        var (resultado, problema) = await Api.PostAsync<TokenResponse>("api/auth", loginModel);
+        var (sucesso, erroMsg) = await ServicoLogin.Login(loginModel);
 
-        if (problema != null)
+        if (!sucesso)
         {
-            erro = problema.Detail;
-            return;
-        }
-
-        if (!string.IsNullOrEmpty(resultado?.Token))
-        {
-            await JS.InvokeVoidAsync("localStorage.setItem", "authToken", resultado.Token);
-            Navigation.NavigateTo("/", forceLoad: true);
+            erro = erroMsg;
         }
     }
 
     private async Task Logout()
     {
-        await JS.InvokeVoidAsync("localStorage.removeItem", "authToken");
-        Navigation.NavigateTo("/login", forceLoad: true);
+        await ServicoLogin.Logout();
     }
 }

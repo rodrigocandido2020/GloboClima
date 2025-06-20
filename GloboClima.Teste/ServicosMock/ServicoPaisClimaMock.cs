@@ -6,7 +6,7 @@ namespace GloboClima.Teste.ServicosMock
 {
     public class ServicoPaisClimaMock : IServicoRestCountries
     {
-        public Task<PaisResponse?> ObterPaisPorCodigo(string codigo)
+        public Task<PaisResponse?> ObterDadosPais(string codigo)
         {
             return Task.FromResult(new PaisResponse{ });
         }

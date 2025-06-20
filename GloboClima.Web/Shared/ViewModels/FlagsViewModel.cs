@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GloboClima.Web.Shared.PaisResponseViews
+namespace GloboClima.Web.Shared.ViewModels
 {
-    public class Flags
+    public class FlagsViewModel
     {
         public string Png { get; set; }
     }

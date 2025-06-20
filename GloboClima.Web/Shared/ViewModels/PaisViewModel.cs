@@ -4,17 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GloboClima.Web.Shared.PaisResponseViews
+namespace GloboClima.Web.Shared.ViewModels
 {
-    public class PaisResponse
+    public class PaisViewModel
     {
-        public Name Name { get; set; }
+        public NameViewModel Name { get; set; }
         public List<string> Capital { get; set; }
         public string Region { get; set; }
         public string Subregion { get; set; }
         public long Population { get; set; }
         public Dictionary<string, string> Languages { get; set; }
-        public Dictionary<string, Currency> Currencies { get; set; }
-        public Flags Flags { get; set; }
+        public Dictionary<string, CurrencyViewModel> Currencies { get; set; }
+        public FlagsViewModel Flags { get; set; }
     }
 }
