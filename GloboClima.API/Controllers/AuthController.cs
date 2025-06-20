@@ -1,4 +1,5 @@
 ﻿using GloboClima.API.ModelDto;
+using GloboClima.Dominio.Interfaces;
 using GloboClima.Servico.Servicos;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,8 +9,8 @@ namespace GloboClima.API.Controllers
     [Route("api/[controller]")]
     public class AuthController : ControllerBase
     {
-        private readonly ServicoUsuario _usuarioServico;
-        public AuthController(ServicoUsuario usuarioServico)
+        private readonly IServicoUsuario _usuarioServico;
+        public AuthController(IServicoUsuario usuarioServico)
         {
             _usuarioServico = usuarioServico;
         }

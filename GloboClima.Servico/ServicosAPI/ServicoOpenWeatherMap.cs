@@ -1,5 +1,6 @@
 ﻿using GloboClima.Dominio.Interfaces;
 using GloboClima.Dominio.Models.WeatherResponses;
+using Microsoft.Extensions.Options;
 using System.Text.Json;
 
 namespace GloboClima.Servico.ServicosAPI
@@ -7,16 +8,18 @@ namespace GloboClima.Servico.ServicosAPI
     public class ServicoOpenWeatherMap: IServicoOpenWeatherMap
     {
         private readonly HttpClient _httpClient;
-        private const string ApiKey = "d55abc2c6de2871ed289dc7339e26849";
-        private const string BaseUrl = "https://api.openweathermap.org/data/2.5/weather";
-        public ServicoOpenWeatherMap(HttpClient httpClient)
+        private readonly string _apiKey;
+        private readonly string _baseUrl;
+        public ServicoOpenWeatherMap(HttpClient httpClient, IOptions<OpenWeatherMapSettings> settings)
         {
             _httpClient = httpClient;
+            _apiKey = settings.Value.ApiKey;
+            _baseUrl = settings.Value.BaseUrl;
         }
 
         public async Task<WeatherResponse?> ObterClimaPorCidade(string cidade)
         {
-            var url = $"{BaseUrl}?q={cidade}&appid={ApiKey}&units=metric&lang=pt";
+            var url = $"{_baseUrl}?q={cidade}&appid={_apiKey}&units=metric&lang=pt";
 
             var response = await _httpClient.GetAsync(url);
 
