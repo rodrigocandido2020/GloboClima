@@ -41,7 +41,7 @@ namespace GloboClima.Teste.Servico
             );
 
             var exception = await Assert.ThrowsAsync<BadRequestException>(() => servico.SalvarFavoritos(""));
-            Assert.Equal("O campo Cidade,devem ser preenchido.", exception.Message);
+            Assert.Equal("O campo Cidade, deve ser preenchido.", exception.Message);
         }
     }
 }

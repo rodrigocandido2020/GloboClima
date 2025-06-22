@@ -4,11 +4,13 @@
     "Projects": [
       {
         "Path": "GloboClima.API\\GloboClima.API.csproj",
-        "Action": "Start"
+        "Action": "Start",
+        "DebugTarget": "http"
       },
       {
         "Path": "GloboClima.Web\\Client\\GloboClima.Web.Client.csproj",
-        "Action": "Start"
+        "Action": "Start",
+        "DebugTarget": "http"
       }
     ]
   }
