@@ -5,12 +5,12 @@
       {
         "Path": "GloboClima.API\\GloboClima.API.csproj",
         "Action": "Start",
-        "DebugTarget": "http"
+        "DebugTarget": "https"
       },
       {
         "Path": "GloboClima.Web\\Client\\GloboClima.Web.Client.csproj",
         "Action": "Start",
-        "DebugTarget": "http"
+        "DebugTarget": "https"
       }
     ]
   }
